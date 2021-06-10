@@ -1,12 +1,19 @@
 header{
-    background-color: #F3E9F1;    
+    background-color: #F3E9F1;
+    padding: 10px 0 10px 0;    
     width: 100%;
-    justify-content: space-between;
-    align-items: flex-end;    
+    div{
+        justify-content: space-around;
+        align-items: center;
+    }
+       
 }
 nav{
     ul{
-        align-items: flex-end;
+        align-items: center;
+        li{
+            padding: 5px;            
+        }
     
     }
 }
