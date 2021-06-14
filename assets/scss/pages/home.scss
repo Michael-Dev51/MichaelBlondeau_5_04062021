@@ -9,14 +9,15 @@ h1{
 }
 h2{
     font-size: 1.5rem;
+    flex-basis: 100%;
 }
-section{
+section{    
     padding: 0 20px 0 20px;
     text-align: center;
     margin-top: 50px;
    
     article{
-        
+       
         border: 2px solid   pink;
         background: $background;
         border-radius: 15px;
@@ -42,4 +43,17 @@ section{
             }
         }
     }
+}
+@media screen and (min-width:758px) {
+   main{
+    section{
+        flex-direction: row !important;
+        flex-basis: 100%;
+        article{
+        flex-basis: 45% !important;
+        }
+    }
+   }
+    
+  
 }

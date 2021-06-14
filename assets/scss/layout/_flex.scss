@@ -2,7 +2,7 @@
     display: flex;
   }
 .f-row{
-    flex-flow: row nowrap;
+    flex-direction: row;
 }
 .f-column{
   flex-direction: column;
