@@ -2,8 +2,10 @@ footer{
     background-color: $background;
     
     padding: 25px;
-    div{
-        max-width: 1200px;
+    div{        
         text-align: center;
+    }
+    a{
+        margin-top: 15px;
     }
 }

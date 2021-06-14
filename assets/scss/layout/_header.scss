@@ -5,9 +5,13 @@ header{
     div{
         >a{
             display:flex;
-            max-width: 300px;
+            
             justify-content: center;
+            img{
+                max-width: 300px;
+            }
         }
+
         nav{
    
             padding: 20px;    
