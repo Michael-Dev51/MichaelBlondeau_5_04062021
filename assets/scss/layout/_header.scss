@@ -1,35 +1,35 @@
-header{
-    
-    margin-left: auto;
-    margin-right: auto;    
-    width: 100%;
-    margin-bottom: 30px;
+header{     
+    margin-bottom: 30px;    
+    background-color: $background;    
+    padding: 10px 0 10px 0;
     div{
-        background-color: $background;
-        align-items: center;
-        padding: 10px 0 10px 0;
-        
-    }
+        >a{
+            display:flex;
+            max-width: 300px;
+            justify-content: center;
+        }
+        nav{
+   
+            padding: 20px;    
+            a {
+                text-decoration: none;
+                color: black;
+                
+            }
+            ul{
+                justify-content: space-around;
+                align-items: center;
+                li{                   
+                    flex-basis: 40%;                   
+                    text-align: center;
+                    font-size: 1.3rem;
+                    font-weight: bold;                             
+                }
+            
+            }
+        }
+    }    
+    
        
 }
-nav{
-   
-    padding: 20px;    
-    a {
-        text-decoration: none;
-        color: black;
-    }
-    ul{
-        justify-content: space-around;
-        align-items: center;
-        li{
-            padding: 5px;
-            width: 40%;
-            height: 20px;
-            text-align: center;
-            background-color: #e2e2e2;
-            border-radius:5px ;            
-        }
-    
-    }
-}
+
