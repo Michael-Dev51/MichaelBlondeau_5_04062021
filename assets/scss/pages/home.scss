@@ -1,59 +1,61 @@
 @import "../main.scss";
-img{
+img {
     max-width: 100%;
     
 }
-h1{
+h1 {
     text-align: center;
     font-size: 1.8rem;
 }
-h2{
+h2 {
     font-size: 1.5rem;
     flex-basis: 100%;
 }
-section{    
+section {
+    flex-direction: column;    
     padding: 0 20px 0 20px;
     text-align: center;
     margin-top: 50px;
    
-    article{
-       
+    a {        
         border: 2px solid   pink;
         background: $background;
         border-radius: 15px;
         padding: 20px 20px 20px 20px;
         margin-bottom: 30px;
         margin-top: 30px;        
-        figure{            
+        figure {            
             position: relative;
-            p{
+            p {
                 position: absolute;
                 right: 10px;
                 top: 10px;
             }
-            img{                
+            img {                
                 border-radius: 15px 15px 0 0;
             }
-            figcaption{
+            figcaption {
                 background: #fff;
-                border-radius: 0 0 15px 15px;             
-                
-                padding: 5px;
-               
+                border-radius: 0 0 15px 15px;                
+                padding: 5px;               
             }
         }
     }
 }
-@media screen and (min-width:758px) {
-   main{
+@media(min-width:758px) {
     section{
         flex-direction: row !important;
-        flex-basis: 100%;
-        article{
-        flex-basis: 45% !important;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        a{
+            
+            flex-basis: 40%;            
+            
         }
+        
+        
     }
-   }
+}
+   
     
   
-}
