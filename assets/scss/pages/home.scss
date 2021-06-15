@@ -35,8 +35,10 @@ section {
                 position: absolute;
                 right: 10px;
                 top: 10px;
-                background-color: $backgroudPrice;
-                
+                background-color: $backgroundPrice;
+                color: $price;
+                border-radius: 50%;
+                padding: 5px;
 
             }
             img {                
