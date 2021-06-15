@@ -11,13 +11,18 @@ h2 {
     font-size: 1.5rem;
     flex-basis: 100%;
 }
+h3{
+    font-size: 1.3rem;
+    color: black;
+}
 section {
     flex-direction: column;    
     padding: 0 20px 0 20px;
     text-align: center;
     margin-top: 50px;
    
-    a {        
+    a {  
+        text-decoration: none;      
         border: 2px solid   pink;
         background: $background;
         border-radius: 15px;
@@ -30,6 +35,9 @@ section {
                 position: absolute;
                 right: 10px;
                 top: 10px;
+                background-color: $backgroudPrice;
+                
+
             }
             img {                
                 border-radius: 15px 15px 0 0;
@@ -47,15 +55,23 @@ section {
         flex-direction: row !important;
         flex-wrap: wrap;
         justify-content: space-around;
-        a{
-            
-            flex-basis: 40%;            
-            
+        a{            
+            flex-basis: 40%;           
         }
         
         
     }
 }
-   
+@media(min-width:992px){
+    main{
+        max-width: 1024px;
+        margin: auto;
+        section{
+            a{
+                flex-basis: 30%;
+            }
+        }
+    }
+}   
     
   
