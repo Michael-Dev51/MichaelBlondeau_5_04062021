@@ -3,8 +3,9 @@ h1 {
   text-align: center;
 }
 #product {
-  flex-direction: column;  
+   
   figure {
+      flex-direction: column;
     border: 1px solid pink;
     padding: 20px 20px 10px 20px;
     margin-bottom: 30px;
@@ -34,4 +35,30 @@ h1 {
         }
     }
   }
+}
+@media(min-width: 758px) and (max-width:999px){
+    #product{
+        article{
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
+@media (min-width: 990px) {
+   #product{
+       article{
+           max-width: 700px;
+           figure{
+            flex-direction: row;
+            img{
+                max-width: 40%;
+            }
+            figcaption{
+                width: 100%;
+            }
+           }
+
+       }
+   } 
 }

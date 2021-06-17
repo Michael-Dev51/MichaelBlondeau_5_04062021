@@ -47,9 +47,9 @@
     </header>
     <main>
       <h1>L'ours Norbert</h1>
-      <section id="product" class="d-flex">
+      <section id="product">
         <article>
-          <figure>
+          <figure class="d-flex">
             <img src="../assets/img/teddy_1.jpg" alt="Ours en peluche" />
             <figcaption>
               <p>
@@ -57,17 +57,19 @@
                 confidit fortasse virtutis hercule illius sunt profectae ego
                 quamquam.
               </p>
+              <span>15.00€</span>
             </figcaption>
-            <span>15.00€</span>
-            <label for="customization-select">Personnalisation:</label>
-
-            <select name="customization" id="customization-select">
-              <option value="">--Choisissez votre personnalisation--</option>
-              <option value="marron">Marron</option>
-              <option value="beige">Beige</option>
-              <option value="blanc">Blanc</option>
-            </select>
+           
+           
           </figure>
+          <label for="customization-select">Personnalisation:</label>
+
+          <select name="customization" id="customization-select">
+            <option value="">--Choisissez votre personnalisation--</option>
+            <option value="marron">Marron</option>
+            <option value="beige">Beige</option>
+            <option value="blanc">Blanc</option>
+          </select>
           <button id="addToCart">Ajouter au panier</button>
         </article>
       </section>
