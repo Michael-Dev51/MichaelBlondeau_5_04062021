@@ -1,0 +1,71 @@
+@import "../main.scss";
+img {
+  max-width: 100%;
+}
+h1 {
+  text-align: center;
+  font-size: 1.8rem;
+}
+h2 {
+  font-size: 1.5rem;
+  flex-basis: 100%;
+}
+h3 {
+  font-size: 1.3rem;
+  color: black;
+}
+section {
+  flex-direction: column;
+  padding: 0 20px 0 20px;
+  text-align: center;
+  margin-top: 50px;
+
+  a {
+    text-decoration: none;
+    border: 1px solid pink;
+    padding: 20px 20px 20px 20px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    figure {
+      position: relative;
+      p {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        background-color: $backgroundPrice;
+        color: $price;
+        border-radius: 50%;
+        padding: 5px;
+      }
+      img {
+        border-radius: 15px 15px 0 0;
+      }
+      figcaption {
+        background: $descriptive;
+
+        padding: 5px;
+      }
+    }
+  }
+}
+@media (min-width: 758px) {
+  section {
+    flex-direction: row !important;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    a {
+      flex-basis: 40%;
+    }
+  }
+}
+@media (min-width: 992px) {
+  main {
+    max-width: 1024px;
+    margin: auto;
+    section {
+      a {
+        flex-basis: 30%;
+      }
+    }
+  }
+}
