@@ -15,7 +15,7 @@ button {
     select {
       width: 100%;
       margin-top: 10px;
-      border: 1px solid $border;
+      border: 1px solid $pink;
       padding: 5px;
       &:active {
         border: 1px solid $btnCart;
@@ -23,7 +23,7 @@ button {
     }
     figure {
       flex-direction: column;
-      border: 1px solid pink;
+      border: 1px solid $pink;
       padding: 20px 20px 10px 20px;
       margin-bottom: 30px;
       margin-top: 30px;
@@ -33,8 +33,8 @@ button {
         flex-direction: column;
         align-items: center;
         p {
-          background: #ede6eb;
-          padding: 5px;
+          background: $lightPink;
+          padding: 15px;
         }
       }
 
@@ -47,12 +47,13 @@ button {
       }
     }
   }
+  #customization {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+  }
 }
-#customization {
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 15px;
-}
+
 @media (min-width: 758px) and (max-width: 999px) {
   #product {
     article {
@@ -74,19 +75,20 @@ button {
         }
       }
     }
-  }
-  #customization {
-    flex-direction: row;
-    justify-content: space-between;
-    label {
-      flex-basis: 40%;
+    #customization {
+      flex-direction: row;
+      justify-content: space-between;
+      label {
+        flex-basis: 40%;
+      }
+      select {
+        flex-basis: 50%;
+      }
     }
-    select {
-      flex-basis: 50%;
+    #addToCart {
+      width: 50%;
+      margin-left: 175px;
     }
   }
-  #addToCart {
-    width: 50%;
-    margin-left: 175px;
-  }
+  
 }
