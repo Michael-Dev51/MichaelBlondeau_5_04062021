@@ -50,8 +50,10 @@
       <section id="product">
         <article>
           <figure class="d-flex">
-            <img src="../assets/img/teddy_1.jpg" alt="Ours en peluche" />
-            <figcaption>
+            <div>
+              <img src="../assets/img/teddy_1.jpg" alt="Ours en peluche" />
+            </div>
+            <figcaption class="d-flex">
               <p>
                 De spe iudicet Sed ut nullo nullo nulla hercule sunt causae
                 confidit fortasse virtutis hercule illius sunt profectae ego
@@ -59,17 +61,16 @@
               </p>
               <span>15.00€</span>
             </figcaption>
-           
-           
           </figure>
-          <label for="customization-select">Personnalisation:</label>
-
-          <select name="customization" id="customization-select">
-            <option value="">--Choisissez votre personnalisation--</option>
-            <option value="marron">Marron</option>
-            <option value="beige">Beige</option>
-            <option value="blanc">Blanc</option>
-          </select>
+          <div id="customization" class="d-flex">
+            <label for="customization-select">Personnalisation:</label>
+            <select name="customization" id="customization-select">
+              <option value="">--Choisissez votre personnalisation--</option>
+              <option value="marron">Marron</option>
+              <option value="beige">Beige</option>
+              <option value="blanc">Blanc</option>
+            </select>
+          </div>
           <button id="addToCart">Ajouter au panier</button>
         </article>
       </section>
