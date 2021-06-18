@@ -17,9 +17,6 @@ button {
       margin-top: 10px;
       border: 1px solid $pink;
       padding: 5px;
-      &:active {
-        border: 1px solid $btnCart;
-      }
     }
     figure {
       flex-direction: column;
@@ -90,5 +87,4 @@ button {
       margin-left: 175px;
     }
   }
-  
 }
