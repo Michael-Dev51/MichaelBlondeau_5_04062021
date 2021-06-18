@@ -12,7 +12,7 @@ h2 {
 }
 h3 {
   font-size: 1.3rem;
-  color: black;
+  color: $black;
 }
 section {
   flex-direction: column;
@@ -22,7 +22,7 @@ section {
 
   a {
     text-decoration: none;
-    border: 1px solid pink;
+    border: 1px solid $pink;
     padding: 20px 20px 20px 20px;
     margin-bottom: 30px;
     margin-top: 30px;
@@ -32,8 +32,8 @@ section {
         position: absolute;
         right: 10px;
         top: 10px;
-        background-color: $backgroundPrice;
-        color: $price;
+        background-color: $purple;
+        color: $white;
         border-radius: 50%;
         padding: 5px;
       }
@@ -41,7 +41,7 @@ section {
         border-radius: 15px 15px 0 0;
       }
       figcaption {
-        background: $descriptive;
+        background: $pinkGray;
 
         padding: 5px;
       }
