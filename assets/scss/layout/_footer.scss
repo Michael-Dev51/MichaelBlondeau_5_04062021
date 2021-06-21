@@ -1,15 +1,14 @@
 footer {
   background-color: $pastelPink;
-
   padding: 25px;
   div {
     text-align: center;
-  h2{
-    font-size: 1.3rem;
+    h2 {
+      font-size: 1.3rem;
+    }
+    a {
+      margin-top: 15px;
+      font-size: 1.2rem;
+    }
   }
-  a {
-    margin-top: 15px;
-    font-size: 1.2rem;
-  }
-}
 }
