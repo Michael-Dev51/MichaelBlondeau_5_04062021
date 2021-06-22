@@ -69,16 +69,18 @@
               <a href="../index.html">Accueil</a>
             </li>
             <li>
-              <a href="../pages/cart.html"><i class="fas fa-shopping-cart"></i></a>
+              <a href="../pages/cart.html"><i class="fas fa-shopping-cart"><span>1</span></i></a>
             </li>
           </ul>
         </nav>
       </div>
     </header>
-    <main>     
-      <section id="product">
-        <h1>Mon panier</h1>
-        <figure class="d-flex">
+    <main> 
+      <h1>Mon panier</h1>
+      <div class="container">    
+      <section id="product">        
+        <figure class="d-flex">          
+          <i class="fas fa-trash-alt"></i>
           <div>
             <img src="../assets/img/teddy_1.jpg" alt="Ours en peluche" />
           </div>
@@ -104,10 +106,20 @@
           </figcaption>
         </figure>        
       </section>
-      <section id="order_form">
+      <section id="basket-summary">
+        <h2>Résumé de votre panier</h2>
+        <div class="summary">
+        <P>Articles<span>1</span></P>
+        <p>Livraison<span>Offerte</span></p>
+        <p>Total HT<span>15€</span></p>
+        <p>TVA<span>20%</span></p>
+        <p>Total TTC<span>18€</span></p>
+      </div>
+      </section>
+      <section id="order-form">
         <h2>Passer votre commande</h2>
         <div class="information">
-          <form method="post" name="formContact" id="form_1">
+          <form method="post" name="formContact" id="customer">
             <div class="form-group">
               <label for="last_name">
                 Nom de famille
@@ -161,7 +173,6 @@
                 placeholder="Ex: 4 rue des crayères "
               />
             </div>
-
             <div class="form-group">
               <label for="city">
                 Ville
@@ -175,14 +186,13 @@
                 placeholder="Ex: Reims"
               />
             </div>
-            
-
             <button id="order" class="btn" type="submit" name="order">
               Commander
             </button>
           </form>
         </div>
       </section>
+    </div>
     </main>
     <footer>
       <div class="d-flex f-column">
