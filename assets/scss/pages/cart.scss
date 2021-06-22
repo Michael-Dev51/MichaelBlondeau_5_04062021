@@ -1,6 +1,44 @@
 @import "../main.scss";
 #product {
   margin: 10px 0 10px 0;
+  h1{
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  figure {
+    flex-direction: column;
+    border: 1px solid $pink;
+    padding: 20px 20px 10px 20px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    figcaption {
+      padding: 5px;
+      flex-direction: column;      
+      p {
+        background: $lightPink;
+        padding: 15px;
+      }
+      #item-number{
+        padding: 15px;
+        align-items: baseline;        
+        input{
+          border: none;
+          margin-left: 5px;
+        }
+      }
+      span {
+        font-weight: bold;
+        margin-top: 15px;
+        text-align: center;
+      }
+    }
+    img {
+      max-width: 100%;
+    }
+    
+  }
 }
 #order_form {
   margin-top: 10px;
@@ -15,16 +53,5 @@
       justify-content: space-between;
       margin-bottom: 5px;
     }
-  }
-  .payment_method {
-    flex-direction: column;
-    label {
-      text-align: center;
-      background: $pink;
-    }
-    #bank_card {
-      margin-top: 10px;
-      text-align: center;
-    }
-  }
+  } 
 }
