@@ -5,12 +5,11 @@ h1 {
   font-weight: bold;
   margin-bottom: 20px;
 }
-#product {
-  margin: 10px 0 10px 0;  
+#product {    
   figure {
     border: 1px solid $pink;
     padding: 20px 5px 10px 5px;
-    margin-bottom: 30px;    
+    margin-bottom: 30px;
     position: relative;
     flex-direction: column;
     i {
@@ -24,7 +23,6 @@ h1 {
       margin: auto;
     }
     figcaption {
-      
       padding: 5px;
       flex-direction: column;
       p {
@@ -38,7 +36,7 @@ h1 {
           border: none;
           margin-left: 5px;
           max-width: 40px;
-        text-align: center;
+          text-align: center;
         }
       }
       span {
@@ -52,14 +50,16 @@ h1 {
     }
   }
 }
-#basket-summary,#order-form{
+#product,#basket-summary,
+#order-form {
   h2 {
     text-align: center;
     background: $pink;
+    padding: 5px 0 5px 0;
   }
 }
-#order-form{
-  .information{
+#order-form {
+  .information {
     margin-top: 10px;
     .form-group {
       display: flex;
@@ -68,24 +68,22 @@ h1 {
     }
   }
 }
-#basket-summary {
-  margin-top: 10px;  
+#basket-summary {  
   .summary {
     margin-top: 10px;
-    p{
+    p {
       display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 5px;
-    }    
-    
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
   }
 }
-@media(min-width:590px){
-  .container{
-    section{
-      &#product{
-        figure{
+@media (min-width: 590px) {
+  .container {
+    section {
+      &#product {
+        figure {
           flex-direction: row;
         }
       }

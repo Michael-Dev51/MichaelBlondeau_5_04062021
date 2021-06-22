@@ -41,11 +41,7 @@
       content="http://orinoco.michael-blondeau.fr/assets/img/logo.png"
     />
     <link rel="shortcut icon" type="image/png" href="favicon.jpg" />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../assets/dist/css/cart.css"
-    />
+    <link rel="stylesheet" type="text/css" href="../assets/dist/css/cart.css" />
     <script
       defer
       src="https://kit.fontawesome.com/ca4c042e28.js"
@@ -69,130 +65,123 @@
               <a href="../index.html">Accueil</a>
             </li>
             <li>
-              <a href="../pages/cart.html"><i class="fas fa-shopping-cart"><span>1</span></i></a>
+              <a href="../pages/cart.html"
+                ><i class="fas fa-shopping-cart"><span>1</span></i></a
+              >
             </li>
           </ul>
         </nav>
       </div>
     </header>
-    <main> 
+    <main>
       <h1>Mon panier</h1>
-      <div class="container">    
-      <section id="product">        
-        <figure class="d-flex">          
-          <i class="fas fa-trash-alt"></i>
-          <div>
-            <img src="../assets/img/teddy_1.jpg" alt="Ours en peluche" />
+      <div class="container">
+        <section id="product">
+          <h2>Vos articles</h2>
+          <figure class="d-flex">
+            <i class="fas fa-trash-alt"></i>
+            <div>
+              <img src="../assets/img/teddy_1.jpg" alt="Ours en peluche" />
+            </div>
+            <figcaption class="d-flex">
+              <p>
+                De spe iudicet Sed ut nullo nullo nulla hercule sunt causae
+                confidit fortasse virtutis hercule illius sunt profectae ego
+                quamquam.
+              </p>
+              <p>couleur : Marron</p>
+              <div id="item-number" class="d-flex">
+                <label for="quantity">Quantité:</label>
+                <input
+                  type="number"
+                  id="quantity"
+                  name="quantity"
+                  value="1"
+                  required
+                  min="1"
+                />
+              </div>
+              <span>15.00€</span>
+            </figcaption>
+          </figure>
+        </section>
+        <section id="basket-summary">
+          <h2>Résumé de votre panier</h2>
+          <div class="summary">
+            <p>Articles<span>1</span></p>
+            <p>Livraison<span>Offerte</span></p>
+            <p>Total HT<span>15€</span></p>
+            <p>TVA<span>20%</span></p>
+            <p>Total TTC<span>18€</span></p>
           </div>
-          <figcaption class="d-flex">
-            <p>
-              De spe iudicet Sed ut nullo nullo nulla hercule sunt causae
-              confidit fortasse virtutis hercule illius sunt profectae ego
-              quamquam.
-            </p>            
-            <p>couleur : Marron</p>
-            <div id="item-number" class="d-flex">
-              <label for="quantity">Quantité:</label>
-              <input
-                type="number"
-                id="quantity"
-                name="quantity"
-                value="1"
-                required
-                min="1"
-              />
-            </div>
-            <span>15.00€</span>
-          </figcaption>
-        </figure>        
-      </section>
-      <section id="basket-summary">
-        <h2>Résumé de votre panier</h2>
-        <div class="summary">
-        <P>Articles<span>1</span></P>
-        <p>Livraison<span>Offerte</span></p>
-        <p>Total HT<span>15€</span></p>
-        <p>TVA<span>20%</span></p>
-        <p>Total TTC<span>18€</span></p>
+        </section>
+        <section id="order-form">
+          <h2>Passer votre commande</h2>
+          <div class="information">
+            <form method="post" name="formContact" id="customer">
+              <div class="form-group">
+                <label for="last_name"> Nom de famille </label>
+                <input
+                  type="text"
+                  id="last_name"
+                  name="last_name"
+                  class="form-control"
+                  required
+                  autofocus
+                  placeholder="Votre nom de famille"
+                />
+              </div>
+              <div class="form-group">
+                <label for="first_name"> Prénom </label>
+                <input
+                  type="text"
+                  id="first_name"
+                  name="first_name"
+                  class="form-control"
+                  required
+                  placeholder="Votre prénom"
+                />
+              </div>
+              <div class="form-group">
+                <label for="E-mail"> Adresse email </label>
+                <input
+                  type="email"
+                  id="E-mail"
+                  name="E-mail"
+                  class="form-control"
+                  required
+                  placeholder="Entrez une adresse mail valide"
+                />
+              </div>
+              <div class="form-group">
+                <label for="address"> Adresse postale </label>
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  class="form-control"
+                  required
+                  placeholder="Ex: 4 rue des crayères "
+                />
+              </div>
+              <div class="form-group">
+                <label for="city"> Ville </label>
+                <input
+                  type="text"
+                  id="city"
+                  name="city"
+                  class="form-control"
+                  required
+                  placeholder="Ex: Reims"
+                />
+              </div>
+              <button id="order" class="btn" type="submit" name="order">
+                Commander
+              </button>
+            </form>
+          </div>
+        </section>
       </div>
-      </section>
-      <section id="order-form">
-        <h2>Passer votre commande</h2>
-        <div class="information">
-          <form method="post" name="formContact" id="customer">
-            <div class="form-group">
-              <label for="last_name">
-                Nom de famille
-              </label>
-              <input
-                type="text"
-                id="last_name"
-                name="last_name"
-                class="form-control"
-                required
-                autofocus
-                placeholder="Votre nom de famille"
-              />
-            </div>
-            <div class="form-group">
-              <label for="first_name">
-                Prénom
-              </label>
-              <input
-                type="text"
-                id="first_name"
-                name="first_name"
-                class="form-control"
-                required
-                placeholder="Votre prénom"
-              />
-            </div>
-            <div class="form-group">
-              <label for="E-mail">
-                Adresse email
-              </label>
-              <input
-                type="email"
-                id="E-mail"
-                name="E-mail"
-                class="form-control"
-                required
-                placeholder="Entrez une adresse mail valide"
-              />
-            </div>
-            <div class="form-group">
-              <label for="address">
-                Adresse postale
-              </label>
-              <input
-                type="text"
-                id="address"
-                name="address"
-                class="form-control"
-                required
-                placeholder="Ex: 4 rue des crayères "
-              />
-            </div>
-            <div class="form-group">
-              <label for="city">
-                Ville
-              </label>
-              <input
-                type="text"
-                id="city"
-                name="city"
-                class="form-control"
-                required
-                placeholder="Ex: Reims"
-              />
-            </div>
-            <button id="order" class="btn" type="submit" name="order">
-              Commander
-            </button>
-          </form>
-        </div>
-      </section>
-    </div>
     </main>
     <footer>
       <div class="d-flex f-column">
