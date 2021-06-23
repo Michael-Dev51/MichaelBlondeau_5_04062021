@@ -26,6 +26,16 @@ header {
           text-align: center;
           font-size: 1.3rem;
           font-weight: bold;
+          i span {
+            background: $white;
+            position: absolute;
+            border-radius: 50%;
+            height: 15px;
+            width: 15px;
+            line-height: 15px;
+            font-size: 0.8rem;
+            margin-left: 5px;
+          }
         }
       }
     }
