@@ -7,9 +7,9 @@ h1 {
 }
 #product {    
   figure {
-    border: 1px solid $pink;
+    @include pink-frame;
     padding: 20px 5px 10px 5px;
-    margin-bottom: 30px;
+    margin-bottom: 30px;    
     position: relative;
     flex-direction: column;
     i {
@@ -20,7 +20,7 @@ h1 {
     }
     div {
       max-width: 80px;
-      margin: auto;
+      
     }
     figcaption {
       padding: 5px;
@@ -34,8 +34,8 @@ h1 {
         align-items: baseline;
         input {
           border: none;
-          margin-left: 5px;
-          max-width: 40px;
+          background: $lightPink;
+          margin-left: 5px;          
           text-align: center;
         }
       }
@@ -57,28 +57,22 @@ h1 {
     background: $pink;
     padding: 5px 0 5px 0;
   }
+  
 }
-#order-form {
-  .information {
-    margin-top: 10px;
-    .form-group {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 5px;
-    }
-  }
-}
-#basket-summary {  
-  .summary {
-    margin-top: 10px;
-    p {
+#order-form,#basket-summary{
+  .information, .summary {
+    padding: 10px 10px 0 10px;
+    margin-bottom: 10px;
+    @include pink-frame;   
+    .form-group, p {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
     }
-  }
+  }  
 }
+
 @media (min-width: 590px) {
   .container {
     section {
@@ -92,20 +86,18 @@ h1 {
 }
 @media (min-width: 980px) {
   .container {
-    max-width: 1024px;
-    margin: auto;
+    max-width: 1024px;    
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     section {
       &#product {
-        flex-basis: 40%;
+        flex-basis: 60%;
       }
-      &#basket-summary {
-        flex-basis: 25%;
+      &#recap{
+        flex-basis: 35%;
       }
-      &#order-form {
-        flex-basis: 25%;
-      }
+      
     }
   }
 }
