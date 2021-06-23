@@ -11,58 +11,49 @@ button {
   font-size: 1.2rem;
 }
 #product {
-  figure {
-    flex-direction: column;
-    border: 1px solid $pink;
-    padding: 20px 20px 10px 20px;
-    margin-bottom: 30px;
-    margin-top: 30px;
-    figcaption {
-      padding: 5px;
-      flex-direction: column;
-      align-items: center;
-      p {
-        background: $lightPink;
-        padding: 15px;
-      }
-    }
-    img {
-      max-width: 100%;
-    }
-    span {
-      font-weight: bold;
-      margin-top: 15px;
-    }
-  }
-  form {
-    #customization {
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 15px;
-      select {
-        width: 100%;
-        margin-top: 10px;
-        border: 1px solid $pink;
-        padding: 5px;
-      }
-    }
-    #item-number {
-      justify-content: space-around;
+  article {
+    select {
+      width: 100%;
+      margin-top: 10px;
       border: 1px solid $pink;
       padding: 5px;
-      margin-bottom: 15px;
-      input {
-        text-align: center;
-        padding: 0 5px 0 5px;
-        width: 40px;
-        margin: 0;
+    }
+    figure {
+      flex-direction: column;
+      border: 1px solid $pink;
+      padding: 20px 20px 10px 20px;
+      margin-bottom: 30px;
+      margin-top: 30px;
+
+      figcaption {
+        padding: 5px;
+        flex-direction: column;
+        align-items: center;
+        p {
+          background: $lightPink;
+          padding: 15px;
+        }
+      }
+
+      img {
+        max-width: 100%;
+      }
+      span {
+        font-weight: bold;
+        margin-top: 15px;
       }
     }
   }
+  #customization {
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+  }
 }
+
 @media (min-width: 758px) and (max-width: 999px) {
   #product {
-    figure {
+    article {
       max-width: 500px;
       margin-left: auto;
       margin-right: auto;
@@ -71,30 +62,29 @@ button {
 }
 @media (min-width: 990px) {
   #product {
-    figure {
-      max-width: 700px;      
-      flex-direction: row;
-      figcaption {
-        justify-content: space-around;
-      }
-    }
-    form {
+    article {
       max-width: 700px;
       margin: auto;
-      #customization {
+      figure {
         flex-direction: row;
-        justify-content: space-between;
-        label {
-          flex-basis: 40%;
-        }
-        select {
-          flex-basis: 50%;
+        figcaption {
+          justify-content: space-around;
         }
       }
-      .btn {
-        width: 50%;
-        margin-left: 175px;
+    }
+    #customization {
+      flex-direction: row;
+      justify-content: space-between;
+      label {
+        flex-basis: 40%;
       }
+      select {
+        flex-basis: 50%;
+      }
+    }
+    #addToCart {
+      width: 50%;
+      margin-left: 175px;
     }
   }
 }
