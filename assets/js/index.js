@@ -5,9 +5,9 @@ fetch("http://localhost:3000/api/teddies")
 .catch(error => alert("Erreur : " + error));
 
 // Fonction pour la création des produits
-function displayProduct (response) {
+function displayProduct (product) {
     //Boucle pour chaque produit
-    for (const produit of response) {
+    for (const produit of product) {
       // Recupération de l'élément id dans le html
       const card = document.getElementById("listing");
       //Convertir le prix
@@ -25,7 +25,7 @@ function displayProduct (response) {
       </article>
     </a>
       ` 
-      console.log(produit);  
+      console.log(product);  
     }
     
 
