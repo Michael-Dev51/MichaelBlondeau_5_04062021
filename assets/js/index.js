@@ -6,14 +6,14 @@ fetch("http://localhost:3000/api/teddies")
 
 // Fonction pour la création des produits
 function displayProduct (product) {
+    // Recupération de l'élément id dans le html
+    const card = document.getElementById("listing");
     //Boucle pour chaque produit
-    for (const produit of product) {
-      // Recupération de l'élément id dans le html
-      const card = document.getElementById("listing");
+    for (const produit of product) {      
       //Convertir le prix
       const price = convertPrice(produit.price);
       card.innerHTML += `
-      <a href="./pages/product.html?_id=${produit.id}">
+      <a href="./pages/product.html?_id=${produit._id}">
       <article>
         <figure>
           <p>${price}</p>
@@ -24,11 +24,8 @@ function displayProduct (product) {
         </figure>
       </article>
     </a>
-      ` 
-      console.log(product);  
+      `       
     }
-    
-
 }
 
 // convertisseur pour le prix en euro
