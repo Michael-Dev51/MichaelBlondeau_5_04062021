@@ -1,3 +1,4 @@
+import {convertPrice} from "./utils.js";
 const searchParams = new URLSearchParams(window.location.search);
 const cardId = searchParams.get("_id");
 // Modification de l'url
@@ -20,13 +21,13 @@ function dataSheet (product) {
       <article>
       <figure class="d-flex">
         <div>
-          <img src="${product.imageUrl}" alt="${product.name} />
+          <img src="${product.imageUrl}" alt="${product.name}" />
         </div>
         <figcaption class="d-flex">
           <p>
             ${product.description}
           </p>
-          <span>${product.price}</span>
+          <span>${convertPrice(product.price)}</span>
         </figcaption>
       </figure>
       <div id="customization" class="d-flex">
