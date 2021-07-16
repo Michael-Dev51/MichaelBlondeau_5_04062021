@@ -31,14 +31,15 @@ function dataSheet (product) {
         </figcaption>
       </figure>
       <div id="customization" class="d-flex">
-        <label for="customization-select">Personnalisation:</label>
+      <label for="customization-select">Personnalisation:</label>
         <select name="customization" id="customization-select">
           <option value="">--Choisissez votre personnalisation--</option>
-          <option value="marron">Marron</option>
-          <option value="beige">Beige</option>
-          <option value="blanc">Blanc</option>
+          <option value ="1">${product.colors}</option>
+          <option value ="2">${colors(product.colors)}</option>
+          
         </select>
-      </div>
+      
+        </div>    
       <button id="addToCart">Ajouter au panier</button>
     </article>
     
@@ -46,11 +47,5 @@ function dataSheet (product) {
     
 }
 
-function addLenses(product) {
-    const versionChoice = document.getElementById("option");
-    for (let lenses of product.lenses) {
-        versionChoice.innerHTML += `<option value= "${lenses}">
-        ${lenses}</option>`;
-        console.log(versionChoice);
-    }
-}
+
+
