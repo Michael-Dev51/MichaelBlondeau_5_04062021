@@ -12,7 +12,7 @@ console.log(newUrl);
 
 function dataSheet (product) {
     // Recupération de l'élément id dans le html
-    const toto = document.getElementById("product");
+    const toto = document.getElementById("prod");
     //Boucle pour chaque produit
          
       //Convertir le prix
@@ -29,23 +29,47 @@ function dataSheet (product) {
           </p>
           <span>${convertPrice(product.price)}</span>
         </figcaption>
-      </figure>
+      </figure>    
+      `       
+      let optionColor = [];
+      const select = product.colors;
+      const selectOption = document.getElementById("customization-select");
+      selectOption.innerHTML += `
       <div id="customization" class="d-flex">
       <label for="customization-select">Personnalisation:</label>
         <select name="customization" id="customization-select">
-          <option value="">--Choisissez votre personnalisation--</option>
-          <option value ="1">${product.colors}</option>
-          <option value ="2">${colors(product.colors)}</option>
-          
-        </select>
-      
-        </div>    
-      <button id="addToCart">Ajouter au panier</button>
-    </article>
-    
-      `       
-    
+          <option value="">--Choisissez votre personnalisation--</option>          
+        </select>      
+      </div>    
+      `        
+      for (optionColor of select) {
+        selectOption.innerHTML +=`                
+        <option value ="">${optionColor}</option>
+        
+        `
+        console.log(optionColor);
+      }
 }
-
-
+function selectColor(color){
+let optionColor = [];
+      const select = product.colors;
+      const selectOption = document.getElementById("customization");
+      selectOption.innerHTML += `
+      <div id="customization" class="d-flex">
+            <label for="customization-select">Personnalisation:</label>
+            <select name="customization" id="customization-select">
+            <option value="">--Choisissez votre personnalisation--</option>
+            <option value=""></option> 
+              
+            </select>
+          </div>
+      `        
+      for (optionColor of select) {
+        selectOption.innerHTML +=`                
+        <option value ="">${optionColor}</option>
+        
+        `
+        console.log(optionColor);
+      }
+    }
 
