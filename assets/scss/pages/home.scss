@@ -41,9 +41,7 @@ section {
       img {
         border-radius: 15px 15px 0 0;
         box-shadow: 0.2em 0.2em 0.3em grey;
-        height: 160px;
-        width: 100%;
-        object-fit: cover;
+        
       }
       figcaption {
         background: $pinkGray;
@@ -60,6 +58,11 @@ section {
     justify-content: space-around;
     a {
       flex-basis: 40%;
+      img{
+        height: 160px;
+        width: 100%;
+        object-fit: cover;
+      }
     }
   }
 }
