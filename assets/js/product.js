@@ -12,14 +12,16 @@ console.log(newUrl);
 
 function dataSheet(product) {
   // Recupération de l'élément id dans le html
-  const productCard = document.getElementById("prod");
+  const productCard = document.getElementById("product");
   //Boucle pour chaque produit
 
   //Convertir le prix
   /* const price = convertPrice(produit.price);*/
-  productCard.innerHTML += `      
-      <article>
-      <figure class="d-flex">
+  
+  productCard.innerHTML += `
+        <h1>${product.name}</h1> 
+        <article>
+          <figure id="prod" class="d-flex">               
         <div>
           <img src="${product.imageUrl}" alt="${product.name}" />
         </div>
@@ -29,7 +31,14 @@ function dataSheet(product) {
           </p>
           <span>${convertPrice(product.price)}</span>
         </figcaption>
-      </figure>    
+        </figure> 
+        <div id="customization" class="d-flex">
+            <label for="customization-select">Personnalisation:</label>
+            <select name="customization" id="customization-select">              
+            </select>
+          </div>
+          <button id="addToCart">Ajouter au panier</button>
+        </article>       
       `
   let optionColor = [];
   const select = product.colors;
@@ -47,5 +56,6 @@ function dataSheet(product) {
         <option value ="">${optionColor}</option>        
         `
   }
+  
 }
 
