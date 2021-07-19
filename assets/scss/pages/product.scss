@@ -12,6 +12,8 @@ button {
 }
 #product {
   article {
+    display: flex;
+    flex-direction: column;
     select {
       width: 100%;
       margin-top: 10px;
@@ -49,6 +51,10 @@ button {
     align-items: center;
     margin-bottom: 15px;
   }
+  #addToCart {
+   margin-bottom: 30px; 
+   border: 1px solid #ffc0cb;     
+  }
 }
 
 @media (min-width: 758px) and (max-width: 999px) {
@@ -81,10 +87,6 @@ button {
       select {
         flex-basis: 50%;
       }
-    }
-    #addToCart {
-      width: 50%;
-      margin-left: 175px;
-    }
+    }    
   }
 }
