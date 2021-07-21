@@ -35,7 +35,7 @@ function dataSheet(product) {
       </div>
       <div id="item-quantity" class="d-flex">
        <label for="quantity">Quantité:</label>
-       <input type="number" id="quantity" name="quantity" min="0">
+       <input type="number" id="quantity" name="quantity" min="0" placeholder="0">
       </div>
 
           <button id="addToCart">Ajouter au panier</button>
@@ -58,6 +58,19 @@ function dataSheet(product) {
     selectOption.innerHTML += `                
         <option value ="">${optionColor}</option>        
         `
-        }  
+        }
+  // Ajout de l'évenement sur le bouton addToCart
+  function btnCart () {
+  const btnAddToCart = Document.getElementById("addToCart");
+  console.log(btnCart);
+  btnAddToCart.addEventListener("click", function (event) {
+    event.preventDefault();
+    addToCart();
+  });
+  function addToCart () {
+    let storageCart = localStorage.getItem("product");
+    console.log();
+  }
+}  
 }
 

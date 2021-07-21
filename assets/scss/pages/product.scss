@@ -58,11 +58,17 @@ button {
     text-align: center;
     margin-top: 10px;
     border: 1px solid $pink;
-    padding: 5px;
+    padding: 5px;    
+    }
+  input::placeholder{
+    color: #d3d3d3;  
   }
   #addToCart {
     margin-bottom: 30px;
     border: 1px solid #ffc0cb;
+  }
+  #customization-select, #quantity, #addToCart {
+    cursor: pointer;
   }
 }
 
