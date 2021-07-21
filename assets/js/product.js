@@ -32,45 +32,49 @@ function dataSheet(product) {
       <div id="customization" class="d-flex">
        <label for="customization-select">Personnalisation:</label>
         <select name="customization" id="customization-select"></select>
+        
       </div>
       <div id="item-quantity" class="d-flex">
        <label for="quantity">Quantité:</label>
        <input type="number" id="quantity" name="quantity" min="0" placeholder="0">
       </div>
-
           <button id="addToCart">Ajouter au panier</button>
         </article>       
       `
-  // Ajout d'un tableau qui récupère les couleurs
+    teddiesColor(product);
+    btnCart(product);
+    
+ 
+}
+// Ajout d'un tableau qui récupère les couleurs
+function teddiesColor(product){
   let optionColor = [];
   const select = product.colors;
-  const selectOption = document.getElementById("customization-select");
-  selectOption.innerHTML += `
-      <div id="customization" class="d-flex">
-      <label for="customization-select">Personnalisation:</label>
-        <select name="customization" id="customization-select">
-          <option value="">--Choisissez votre personnalisation--</option>          
-        </select>      
-      </div>    
-      `
+  const selectOption = document.getElementById("customization-select"); 
   // Boucle qui récupère les valeurs du tableau puis l'affiche    
   for (optionColor of select) {
     selectOption.innerHTML += `                
-        <option value ="">${optionColor}</option>        
+        <option id="colors" value ="">${optionColor}</option>        
         `
         }
-  // Ajout de l'évenement sur le bouton addToCart
-  function btnCart () {
-  const btnAddToCart = Document.getElementById("addToCart");
-  console.log(btnCart);
-  btnAddToCart.addEventListener("click", function (event) {
-    event.preventDefault();
-    addToCart();
-  });
-  function addToCart () {
-    let storageCart = localStorage.getItem("product");
-    console.log();
   }
-}  
-}
-
+   // Ajout de l'évenement sur le bouton addToCart
+   function btnCart(product) {
+    const btnAddToCart = document.getElementById("addToCart");
+    
+    btnAddToCart.addEventListener("click", function (e) {
+      e.preventDefault();
+      let article = {
+        image : product.imageUrl,
+        name :product.name,
+        descriptif : product.description,
+        price : product.price,
+        colors : product.colors,
+        quantity :quantity.value,        
+      }
+      console.log(article);
+     
+            
+    });  
+  }  
+  
