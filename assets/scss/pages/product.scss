@@ -47,14 +47,22 @@ button {
       }
     }
   }
-  #customization {
+  #customization,
+  #item-quantity {
     flex-direction: column;
     align-items: center;
     margin-bottom: 15px;
   }
+  #item-quantity input {
+    width: 25%;
+    text-align: center;
+    margin-top: 10px;
+    border: 1px solid $pink;
+    padding: 5px;
+  }
   #addToCart {
-   margin-bottom: 30px; 
-   border: 1px solid #ffc0cb;     
+    margin-bottom: 30px;
+    border: 1px solid #ffc0cb;
   }
 }
 
@@ -79,7 +87,8 @@ button {
         }
       }
     }
-    #customization {
+    #customization,
+    #item-quantity {
       flex-direction: row;
       justify-content: space-between;
       label {
@@ -88,6 +97,6 @@ button {
       select {
         flex-basis: 50%;
       }
-    }    
+    }
   }
 }
