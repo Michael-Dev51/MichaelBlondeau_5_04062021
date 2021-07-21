@@ -54,7 +54,7 @@ function teddiesColor(product){
   // Boucle qui récupère les valeurs du tableau puis l'affiche    
   for (optionColor of select) {
     selectOption.innerHTML += `                
-        <option id="colors" value ="">${optionColor}</option>        
+        <option id="colors" value ="${optionColor}">${optionColor}</option>        
         `
         }
   }
@@ -64,14 +64,20 @@ function teddiesColor(product){
     
     btnAddToCart.addEventListener("click", function (e) {
       e.preventDefault();
+      let quantityProduct = document.getElementById("quantity");
+      let liste = document.getElementById("customization-select");
+      let colorSelect = liste.options[liste.selectedIndex].text;
       let article = {
         image : product.imageUrl,
         name :product.name,
         descriptif : product.description,
-        price : product.price,
-        colors : product.colors,
-        quantity :quantity.value,        
+        price : convertPrice(product.price),
+        colors : colorSelect,
+        /*quantity :quantity.value,*/
+        quantity: quantityProduct.value,        
       }
+      console.log(colorSelect);
+      console.log(product);
       console.log(article);
      
             
