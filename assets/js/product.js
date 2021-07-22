@@ -75,11 +75,12 @@ function teddiesColor(product){
         colors : colorSelect,
         /*quantity :quantity.value,*/
         quantity: quantityProduct.value,        
-      }
-      console.log(colorSelect);
-      console.log(product);
-      console.log(article);
-     
+      }      
+      // Enregistrement des données du produit
+      localStorage.setItem("list",JSON.stringify(article));
+      const retrievedList = JSON.parse(localStorage.getItem("list"));
+      console.log(typeof retrieved);
+      
             
     });  
   }  
