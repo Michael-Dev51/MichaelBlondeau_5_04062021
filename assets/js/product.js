@@ -77,33 +77,30 @@ function teddiesColor(product){
         quantity: quantityProduct.value,        
       }      
       // Enregistrement des données du produit
-      /*localStorage.setItem("list",JSON.stringify(article));
-      const retrievedList = JSON.parse(localStorage.getItem("list"));
-      console.log(typeof retrieved);*/
-      let retrievedList = JSON.parse(localStorage.getItem("listProduct"));
-       if(retrievedList){
-          retrievedList.push(article);
-          localStorage.setItem("listProduct", JSON.stringify(retrievedList));
-          console.log(retrievedList);
-          if(window.confirm(article.name + " " + article.colors + "a été ajouté. Souhaitez vous consulter votre panier ?")) {
-            window.location.href = "cart.html";
-          } else {
-            location.href = "./index.html";
-          }
+      
+      let retrievedList = JSON.parse(localStorage.getItem("list"));
+      const colors = colorSelect;
+      if (retrievedList){
+        retrievedList.push(article);
+        localStorage.setItem("list",JSON.stringify(retrievedList));
+        console.log(retrievedList);
+        if (window.confirm(product.name + " " + colorSelect + ' a bien été ajouté. Souhaitez vous consulter votre panier ?')) { 
+          window.location.href = "cart.html";
+      } else {
+          window.location.href = "../index.html";
+      }
       } else {
         retrievedList = [];
-                    retrievedList.push(article);
-                    localStorage.setItem("listProduct", JSON.stringify(retrievedList));
-                    console.log(retrievedList);
-                    if (window.confirm(article.name + " " + article.colors + ' a bien été ajouté. Souhaitez vous consulter votre panier ?')) { 
-                        window.location.href = "cart.html";
-                    } else {
-                        location.href = "../index.html";
-                    }
-                }
-      console.log(retrievedList);
-      localStorage.clear();
-            
+        retrievedList.push(article);
+        localStorage.setItem("list",JSON.stringify(retrievedList));
+        console.log(retrievedList);
+        if (window.confirm(product.name + " " + colorSelect + ' a bien été ajouté. Souhaitez vous consulter votre panier ?')) { 
+          location.href = "cart.html";
+      } else {
+          
+          location.href = "../index.html";
+      }
+      }          
     });  
   }  
   

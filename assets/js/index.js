@@ -1,4 +1,5 @@
 import {convertPrice} from "./utils.js";
+
 //fetch de l'URL
 fetch("http://localhost:3000/api/teddies")
 .then(res => res.json())

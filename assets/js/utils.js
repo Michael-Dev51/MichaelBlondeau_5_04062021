@@ -1,3 +1,4 @@
+
 // convertisseur pour le prix en euro
 export function convertPrice(productPrice) {
     let price = `${productPrice}`;
@@ -8,3 +9,4 @@ export function convertPrice(productPrice) {
     }).format(price / 100);
     return price;
   }
+ // basketPreview
