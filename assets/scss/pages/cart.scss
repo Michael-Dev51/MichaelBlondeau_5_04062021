@@ -18,13 +18,24 @@ h1 {
       right: 9px;
       top: 5px;
     }
-    div {
-      max-width: 80px;
-      
-    }
+   
     figcaption {
       padding: 5px;
       flex-direction: column;
+      .container_teddies {
+        display: flex;
+        margin-bottom: 10px;
+        border-bottom:  thick double $darkPink;
+        .name {
+          text-align: center;
+        }
+        .color {
+
+        }
+        .quantity{
+          
+        }
+      }
       p {
         background: $lightPink;
         padding: 15px;
@@ -46,7 +57,8 @@ h1 {
       }
     }
     img {
-      max-width: 100%;
+      max-width: 60px;
+      
     }
   }
 }

@@ -72,10 +72,9 @@ function teddiesColor(product){
         name :product.name,
         descriptif : product.description,
         price : convertPrice(product.price),
-        colors : colorSelect,
-        /*quantity :quantity.value,*/
+        colors : colorSelect,        
         quantity: quantityProduct.value,        
-      }      
+      }     
       // Enregistrement des données du produit
       
       let retrievedList = JSON.parse(localStorage.getItem("list"));
@@ -100,7 +99,7 @@ function teddiesColor(product){
           
           location.href = "../index.html";
       }
-      }          
+      }         
     });  
   }  
   
