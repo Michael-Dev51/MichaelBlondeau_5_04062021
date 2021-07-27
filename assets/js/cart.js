@@ -35,65 +35,41 @@ if(retrievedList == null || retrievedList.length === 0){
       const cartImage = document.createElement('div');
       eachArticle.appendChild(cartImage);
       cartImage.innerHTML = `
-      <img id="images" src="${retrievedList.image}" alt="${retrievedList.name}" />`
-      ;
+      <img id="images" src="${retrievedList.image}" alt="${retrievedList.name}" />`;
+      cartImage.className = "Container_image"
 
       const teddiesResume = document.createElement('div');
       eachArticle.appendChild(teddiesResume);
+      teddiesResume.className = "container_summary";
 
       const teddiesName = document.createElement('div');
       teddiesResume.appendChild(teddiesName);
       teddiesName.textContent = retrievedList.name;
+      teddiesName.className = "name";
 
       const teddiesColor = document.createElement('div');
       teddiesResume.appendChild(teddiesColor);
       teddiesColor.textContent = "Couleur : " + retrievedList.colors;
+      teddiesColor.className = "color";
 
       const teddiesQuantity = document.createElement('div');
       teddiesResume.appendChild(teddiesQuantity);
       teddiesQuantity.textContent = "Quantité : " + retrievedList.quantity;
+      teddiesQuantity.className = "quantity";
 
       const teddyPrice = document.createElement('div');
       teddiesResume.appendChild(teddyPrice);
-      teddyPrice.className = 'teddy_price';
+      teddyPrice.className = 'price';
       teddyPrice.id = i++;
 
       const price = document.createElement('p');
       teddyPrice.appendChild(price);
-      price.textContent = retrievedList.price + " €"
+      price.textContent = retrievedList.price;
+
   };
 
 
 
 
-function resume (article) {
- 
-cartArticle.innerHTML += `
-<h2>Vos articles</h2>
-<figure class="d-flex">
-  <i class="fas fa-trash-alt"></i>
-  <div>
-    <img id="images" src="${product.imageUrl}" alt="${product.name}" />
-  </div>
-  <figcaption class="d-flex">
-    <p>
-    ${article.description}
-    </p>
-    <p>couleur : Marron</p>
-    <div id="item-number" class="d-flex">
-      <label for="quantity">Quantité:</label>
-      <input
-        type="number"
-        id="quantity"
-        name="quantity"
-        value="1"
-        required
-        min="1"
-      />
-    </div>
-    <span>${convertPrice(product.price)}</span>
-  </figcaption>
-</figure>
-`
-} 
+
 }

@@ -26,30 +26,30 @@ h1 {
         display: flex;
         margin-bottom: 10px;
         border-bottom:  thick double $darkPink;
-        .name {
+        .Container_image{
+          flex-basis: 20%;
+        }
+        .container_summary{
+          flex-basis: 80%;
+        }
+        .name, .price {
+          text-align: center;          
+          font-weight: bold;
+        }
+        .price {          
+          color: $grey;
+        }
+        .color, .quantity {
           text-align: center;
         }
-        .color {
-
-        }
-        .quantity{
-          
-        }
+        
+        
       }
       p {
         background: $lightPink;
         padding: 15px;
       }
-      #item-number {
-        padding: 15px 0 15px 0;
-        align-items: baseline;
-        input {
-          border: none;
-          background: $lightPink;
-          margin-left: 5px;          
-          text-align: center;
-        }
-      }
+      
       span {
         font-weight: bold;
         margin-top: 15px;
@@ -57,7 +57,9 @@ h1 {
       }
     }
     img {
-      max-width: 60px;
+      width: 120px;
+      height: 80px;
+      object-fit: cover;
       
     }
   }
@@ -100,14 +102,16 @@ h1 {
   .container {
     max-width: 1024px;    
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
     section {
       &#product {
-        flex-basis: 60%;
+        flex-basis: 45%;
       }
       &#recap{
-        flex-basis: 35%;
+        flex-basis: 45%;
       }
       
     }
