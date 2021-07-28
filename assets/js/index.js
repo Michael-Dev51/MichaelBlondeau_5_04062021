@@ -1,3 +1,5 @@
+import {convertPrice} from "./utils.js";
+
 //fetch de l'URL
 fetch("http://localhost:3000/api/teddies")
 .then(res => res.json())
@@ -28,13 +30,3 @@ function displayProduct (product) {
     }
 }
 
-// convertisseur pour le prix en euro
-function convertPrice(productPrice) {
-  let price = `${productPrice}`;
-  price = Intl.NumberFormat("fr-FR", {
-      style: "currency",
-      currency: "EUR",
-      minimumFractionDigits: 2,
-  }).format(price / 100);
-  return price;
-}

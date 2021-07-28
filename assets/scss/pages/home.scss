@@ -22,6 +22,7 @@ section {
 
   a {
     text-decoration: none;
+    background-color:#dbdbdb;
     border: 1px solid $pink;
     padding: 20px 20px 20px 20px;
     margin-bottom: 30px;
@@ -39,10 +40,12 @@ section {
       }
       img {
         border-radius: 15px 15px 0 0;
+        box-shadow: 0.2em 0.2em 0.3em grey;
+        
       }
       figcaption {
         background: $pinkGray;
-
+        margin-top: 8px;
         padding: 5px;
       }
     }
@@ -55,6 +58,11 @@ section {
     justify-content: space-around;
     a {
       flex-basis: 40%;
+      img{
+        height: 160px;
+        width: 100%;
+        object-fit: cover;
+      }
     }
   }
 }
