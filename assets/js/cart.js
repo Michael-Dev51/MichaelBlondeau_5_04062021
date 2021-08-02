@@ -1,9 +1,72 @@
 // Récupération des données du localStorage
 let retrievedList = JSON.parse(localStorage.getItem("list"));
-console.log(retrievedList);
 
-// Création du recapitulatif du panier
+
 const cartArticle = document.getElementById("product");
+let structureProduitPanier = [];
+let i ="";
+console.log(retrievedList);
+if(retrievedList === null){
+  const panierVide = `
+    <div class="">
+      <p>Le panier est vide</p>
+    </div>
+  `;
+    cartArticle.innerHTML = panierVide;
+} else{
+  
+  for(i = 0; i < retrievedList.length; i++){
+    
+    structureProduitPanier = structureProduitPanier + `
+    <h2>Vos articles</h2>
+    <figure>
+      <figcaption>
+        <div class="container_teddies">
+          <div>
+          <img id="images" src="${retrievedList[i].image}" alt="${retrievedList.name}" /> 
+          </div>
+          <div class="container_summary">
+            <h3 class="name">${retrievedList[i].name}</h3>
+            <p class="color">${retrievedList[i].colors}</p>
+            <p class="quantity">${retrievedList[i].quantity}</p>
+            <p class="price">${retrievedList[i].price}</p>
+          </div>
+        </div>
+      </figcaption>
+    
+    </figure> 
+    `;
+  }
+    if(i === retrievedList.length){
+    cartArticle.innerHTML = structureProduitPanier;
+    
+  }
+
+
+}
+// Création du recapitulatif du panier
+/*const cartArticle = document.getElementById("product");
+cartArticle.innerHTML += `
+<h2>Vos articles</h2>
+<figure>
+  <figcaption>
+    <div class="container_teddies">
+      <div>
+      <img id="images" src="${retrievedList.image}" alt="${retrievedList.name}" /> 
+      </div>
+      <div class="container_summary">
+        <h3 class="name">${retrievedList.name}</h3>
+        <p class="color">${retrievedList.colors}</p>
+        <p class="quantity">${retrievedList.quantity}</p>
+        <p class="price">${retrievedList.price}</p>
+      </div>
+    </div>
+  </figcaption>
+
+</figure>
+
+`*/
+/*const cartArticle = document.getElementById("product");
 
 const cartH2 = document.createElement("h2");
 cartArticle.appendChild(cartH2);
@@ -57,19 +120,25 @@ if(retrievedList == null || retrievedList.length === 0){
       const teddiesPrice = document.createElement('div');
       teddiesResume.appendChild(teddiesPrice);
       teddiesPrice.className = 'price';
-      teddiesPrice.id = i++;
+      
 
       const price = document.createElement('p');
       teddiesPrice.appendChild(price);
-      price.textContent = retrievedList.price;
+     
 
-  };
+      
+      
+  }
 
 
 
 
 
-}
+}*/
+//----------------------------Le Local Storage--------------------------
+
+//----------------------------Fin Local Storage-------------------------
+
 
 const cartSummary = document.getElementById("recap");
 const totalBasket = document.createElement("article");
@@ -86,7 +155,7 @@ summaryContainer.className = "summary";
 
 const summaryArticle = document.createElement("p");
 summaryContainer.appendChild(summaryArticle);
-summaryArticle.textContent = "Article : " + retrievedList.value;
+summaryArticle.textContent = "Article : " + retrievedList.quantity;
 
 const delivery = document.createElement("p");
 summaryContainer.appendChild(delivery);
@@ -94,11 +163,15 @@ delivery.textContent = "Livraison : ";
 
 const totalExcludingTax = document.createElement("p");
 summaryContainer.appendChild(totalExcludingTax);
-totalExcludingTax.textContent = "Total HT : " ;
+totalExcludingTax.textContent = "Total HT : " + retrievedList.price;
 
 const tva = document.createElement("p");
 summaryContainer.appendChild(tva);
 tva.textContent = "Tva : " ;
+
+//---------------------------------------------------------------
+
+
 
 // Affichage du formulaire
 const orderForm = document.createElement("article");
@@ -178,6 +251,10 @@ customerInformation.innerHTML = `
 
 
 
+
+
+
+
 /*<article id="basket-summary">
           
           <div class="summary">
@@ -254,3 +331,4 @@ customerInformation.innerHTML = `
             </form>
           </div>
         </article>*/
+        console.table(retrievedList);

@@ -68,38 +68,43 @@ function teddiesColor(product){
       let liste = document.getElementById("customization-select");
       let colorSelect = liste.options[liste.selectedIndex].text;
       let article = {
+        id : product._id,
         image : product.imageUrl,
         name :product.name,
         descriptif : product.description,
         price : convertPrice(product.price),
         colors : colorSelect,        
         quantity: quantityProduct.value,        
-      }     
+      } 
+      
+      //Fonction popup confirmation
+      const popupConfirmation = () =>{
+        if(window.confirm (`${product.name} option couleur: ${colorSelect} a bien été ajouté au panier 
+Consultez le panier OK ou revenir à l'accueil ANNULER `)){
+          window.location.href = "../pages/cart.html";
+      }else {
+            window.location.href = "../index.html"; 
+            }
+      }
+
+      //Fonction ajouter un produit sélectionné dans le localStorage
+      const addSelectedProduct = () =>{
+        retrievedList.push(article);
+        localStorage.setItem("list",JSON.stringify(retrievedList));
+        popupConfirmation();
+      }
+
       // Enregistrement des données du produit
       
       let retrievedList = JSON.parse(localStorage.getItem("list"));
-      const colors = colorSelect;
+      /*const colors = colorSelect;*/
       if (retrievedList){
-        retrievedList.push(article);
-        localStorage.setItem("list",JSON.stringify(retrievedList));
-        console.log(retrievedList);
-        if (window.confirm(product.name + " " + colorSelect + ' a bien été ajouté. Souhaitez vous consulter votre panier ?')) { 
-          window.location.href = "cart.html";
-      } else {
-          window.location.href = "../index.html";
-      }
+        addSelectedProduct();        
       } else {
         retrievedList = [];
-        retrievedList.push(article);
-        localStorage.setItem("list",JSON.stringify(retrievedList));
-        console.log(retrievedList);
-        if (window.confirm(product.name + " " + colorSelect + ' a bien été ajouté. Souhaitez vous consulter votre panier ?')) { 
-          location.href = "cart.html";
-      } else {
-          
-          location.href = "../index.html";
-      }
+        addSelectedProduct();        
       }         
     });  
   }  
-  
+
+
