@@ -76,6 +76,7 @@ return accumulator + currentValue;
 }, 0);
 //Calcule tva
 let horsTaxe = (prixTotal/120)*20;
+horsTaxe = horsTaxe.toFixed(2);
 console.log("prix tva :"+horsTaxe);
 const totalPriceExcludingTax = prixTotal - horsTaxe;
 console.log(totalPriceExcludingTax);
@@ -98,7 +99,7 @@ cartSummary.innerHTML += `
   <article id="order-form">
   <h2>Passer votre commande</h2>
   <div class="information">
-  <form method="post" name="formContact" id="customer">
+  <form action="" method="post" name="formContact" id="customer">
   <div class="form-group">
     <label for="last_name"> Nom de famille </label>
     <input
@@ -110,7 +111,9 @@ cartSummary.innerHTML += `
       autofocus
       placeholder="Votre nom de famille"
     />
+    
   </div>
+  <span class="error id="errorLastName"></span>
   <div class="form-group">
     <label for="first_name"> Prénom </label>
     <input
@@ -121,18 +124,21 @@ cartSummary.innerHTML += `
       required
       placeholder="Votre prénom"
     />
+    
   </div>
+  <span class="error id="errorLastName"></span>
   <div class="form-group">
-    <label for="E-mail"> Adresse email </label>
+    <label for="Email"> Adresse email </label>
     <input
       type="email"
-      id="E-mail"
-      name="E-mail"
+      id="Email"
+      name="Email"
       class="form-control"
       required
       placeholder="Entrez une adresse mail valide"
-    />
+    />    
   </div>
+  <span class="error id="errorForeName"></span>
   <div class="form-group">
     <label for="address"> Adresse postale </label>
     <input
@@ -142,8 +148,8 @@ cartSummary.innerHTML += `
       class="form-control"
       required
       placeholder="Ex: 4 rue des crayères "
-    />
-  </div>
+    />    
+  </div>  
   <div class="form-group">
     <label for="city"> Ville </label>
     <input
@@ -154,7 +160,9 @@ cartSummary.innerHTML += `
       required
       placeholder="Ex: Reims"
     />
+    
   </div>
+  <span class="error id="errorForeName"></span>
   <button id="order" class="btn" type="submit" name="order">
     Commander
   </button>
@@ -162,4 +170,18 @@ cartSummary.innerHTML += `
   </div>
   </article>
 
-`
+`;
+//************************Formulaire de contact********************************/
+
+
+ 
+  
+
+
+  
+  /*let emailRegExp = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');*/
+
+  
+
+
+
