@@ -106,14 +106,13 @@ cartSummary.innerHTML += `
       type="text"
       id="last_name"
       name="last_name"
-      class="form-control"
-      required
-      autofocus
+      class="form-control" 
+      required     
       placeholder="Votre nom de famille"
     />
-    
+    <span class="error" id="errorLastName"></span>
   </div>
-  <span class="error id="errorLastName"></span>
+  
   <div class="form-group">
     <label for="first_name"> Prénom </label>
     <input
@@ -126,7 +125,7 @@ cartSummary.innerHTML += `
     />
     
   </div>
-  <span class="error id="errorLastName"></span>
+  <span class="error id="errorFirstName"></span>
   <div class="form-group">
     <label for="Email"> Adresse email </label>
     <input
@@ -138,7 +137,7 @@ cartSummary.innerHTML += `
       placeholder="Entrez une adresse mail valide"
     />    
   </div>
-  <span class="error id="errorForeName"></span>
+  <span class="error id="errorEmail"></span>
   <div class="form-group">
     <label for="address"> Adresse postale </label>
     <input
@@ -170,8 +169,35 @@ cartSummary.innerHTML += `
   </div>
   </article>
 
-`;
+`
 //************************Formulaire de contact********************************/
+
+const validate = document.getElementById("order");
+let lastName = document.getElementById("last_name");
+let lastNameError = document.getElementById("errorLastName");
+let onlyCaractere = /^[a-zA-ZéèîÏÉÈîïÇ][a-zéèêîïàç]+([-'\s][a-zA-ZéèîÏÈÉÎÏ][a-zéèêàçîï]+)?/;
+validate.addEventListener("click", validation);
+
+function validation(e){
+  if(lastName.validity.valueMissing) {
+    e.preventDefault();
+    lastNameError.textContent = "texte manquant";
+    lastNameError.style.color = "red";
+  } else if(onlyCaractere.test(lastName.value) == false) {
+    e.preventDefault();
+    lastNameError.textContent = "Format incorrect";
+    lastNameError.style.color = "orange";
+  } else {
+    lastNameError.textContent = "";
+  }
+}
+
+console.log(lastName);
+console.log(validate);
+console.log(lastNameError);
+
+ 
+  
 
 
  
