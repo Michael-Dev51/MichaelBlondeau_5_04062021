@@ -89,7 +89,17 @@ Consultez le panier OK ou revenir à l'accueil ANNULER `)){
 
       //Fonction ajouter un produit sélectionné dans le localStorage
       const addSelectedProduct = () =>{
-        retrievedList.push(article);
+      let find = false;
+        retrievedList.forEach(element => {
+          if(element.id == article.id){
+            element.quantity = parseInt(element.quantity) + parseInt(article.quantity);
+            find = true;
+          }
+        });
+        if(!find){
+          retrievedList.push(article);
+        }
+        
         localStorage.setItem("list",JSON.stringify(retrievedList));
         popupConfirmation();
       }

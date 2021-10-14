@@ -20,7 +20,7 @@ if(retrievedList === null){
     structureProduitPanier = structureProduitPanier + `
     <h2>Vos articles</h2>
     <figure>
-    <a href=# id="delete" data-id="${i}">Supprimer</a>
+    <a href=# class="delete" data-id="${retrievedList[i].id}">Supprimer</a>
       <figcaption>
         <div class="container_teddies">
           <div>
@@ -86,7 +86,9 @@ console.log(totalPriceExcludingTax);
 //Suppression d'un article
 
 // SUPPRIMER 1 PRODUIT DU PANIER
-
+function deleteArticle (){
+  
+}
 
 //------------------------------Résumé commande et Formulaire de commande--------------------------
 
