@@ -20,6 +20,7 @@ if(retrievedList === null){
     structureProduitPanier = structureProduitPanier + `
     <h2>Vos articles</h2>
     <figure>
+    <a href=# id="delete" data-id="${i}">Supprimer</a>
       <figcaption>
         <div class="container_teddies">
           <div>
@@ -81,6 +82,10 @@ horsTaxe = horsTaxe.toFixed(2);
 console.log("prix tva :"+horsTaxe);
 const totalPriceExcludingTax = prixTotal - horsTaxe;
 console.log(totalPriceExcludingTax);
+
+//Suppression d'un article
+
+// SUPPRIMER 1 PRODUIT DU PANIER
 
 
 //------------------------------Résumé commande et Formulaire de commande--------------------------

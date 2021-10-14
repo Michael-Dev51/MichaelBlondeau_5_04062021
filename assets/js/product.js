@@ -14,7 +14,7 @@ console.log(newUrl);
 function dataSheet(product) {
   // Recupération de l'élément id dans le html
   const productCard = document.getElementById("product");
-  //Boucle pour chaque produit  
+  
   productCard.innerHTML += `
     <h1>${product.name}</h1> 
      <article>
@@ -105,6 +105,7 @@ Consultez le panier OK ou revenir à l'accueil ANNULER `)){
         addSelectedProduct();        
       }         
     });  
+    
   }  
 
 
