@@ -96,7 +96,7 @@ document.querySelectorAll(".delete").forEach((deleteButton) => {
 function deleteArticle(articleId) {
   // Retirer articleId du retrievedList
   retrievedList.forEach((product, index) => {
-    if (articleId == product.id) {
+    if (articleId == product.id && product.colors) {
       retrievedList.splice(index, 1);
     }
   });
@@ -108,6 +108,7 @@ function deleteArticle(articleId) {
   }
   // Retirer l'article de notre page (rafraichir la page completement)
   document.getElementById(`cart_${articleId}`).remove();
+  window.location.reload();
 }
 
 //------------------------------Résumé commande et Formulaire de commande--------------------------

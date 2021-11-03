@@ -91,7 +91,7 @@ Consultez le panier OK ou revenir à l'accueil ANNULER `)){
       const addSelectedProduct = () =>{
       let find = false;
         retrievedList.forEach(element => {
-          if(element.id == article.id){
+          if(element.id == article.id && element.colors == article.colors){
             element.quantity = parseInt(element.quantity) + parseInt(article.quantity);
             find = true;
           }
