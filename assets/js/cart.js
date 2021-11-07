@@ -8,30 +8,34 @@ let i = "";
 
 if (retrievedList === null) {
   const panierVide = `
-    <div class="">
+    <div class="empty_basket">
       <p>Le panier est vide</p>
     </div>
   `;
   cartArticle.innerHTML = panierVide;
 } else {
+  structureProduitPanier += `<h2>Vos articles</h2>`;
   for (i = 0; i < retrievedList.length; i++) {
-    structureProduitPanier =
-      structureProduitPanier +
-      `
-    <h2>Vos articles</h2>
+    structureProduitPanier += `
+    
+    <span class="empty_basket"></span>
     <figure id="cart_${retrievedList[i].id}">
-    <a href=# class="delete" data-id="${retrievedList[i].id}">Supprimer</a>
+    <a href=# class="delete" data-id="${retrievedList[i].id}" data-colors="${
+      retrievedList[i].colors
+    }">Supprimer</a>
       <figcaption>
         <div class="container_teddies">
           <div>
           <img id="images" src="${retrievedList[i].image}" alt="${
-        retrievedList.name
-      }" /> 
+      retrievedList.name
+    }" /> 
           </div>
           <div class="container_summary">
             <h3 class="name">${retrievedList[i].name}</h3>
             <p class="color">${retrievedList[i].colors}</p>
+            <button data-index="${i}">Moins</button>
             <p class="quantity">${retrievedList[i].quantity}</p>
+            <button class="addQty" data-index="${i}">Plus</button>
             
           </div>
         </div>
@@ -87,19 +91,27 @@ console.log(totalPriceExcludingTax);
 document.querySelectorAll(".delete").forEach((deleteButton) => {
   console.log(deleteButton);
   const articleId = deleteButton.dataset.id;
+  const colors = deleteButton.dataset.colors;
   deleteButton.addEventListener("click", () => {
     console.log(articleId);
-    deleteArticle(articleId);
+    deleteArticle(articleId, colors);
   });
 });
 
-function deleteArticle(articleId) {
+/**
+ * localstorage = [
+ *  {id: sfsf, color: "black", quantity: 5....},
+ *  {id: sfsf, color: "white", quantity: 3....}
+ * ]
+ * */
+
+function deleteArticle(articleId, colors) {
   // Retirer articleId du retrievedList
-  retrievedList.forEach((product, index) => {
-    if (articleId == product.id && product.colors) {
-      retrievedList.splice(index, 1);
-    }
-  });
+  const index = retrievedList.findIndex(
+    (product) => product.id == articleId && product.colors == colors
+  );
+  retrievedList.splice(index, 1);
+
   // Mettre a jour le localstorage
   if (retrievedList.length == 0) {
     localStorage.setItem("list", null);
@@ -107,9 +119,26 @@ function deleteArticle(articleId) {
     localStorage.setItem("list", JSON.stringify(retrievedList));
   }
   // Retirer l'article de notre page (rafraichir la page completement)
-  document.getElementById(`cart_${articleId}`).remove();
+  // document.getElementById(`cart_${articleId}`).remove();
   window.location.reload();
 }
+
+function addQty(index, ) {
+  const articleActu = retrievedList[index];
+  retrievedList.splice(index, 1, {
+    ...articleActu,
+    quantity: parseInt(articleActu.quantity)++,
+  });
+  localStorage.setItem("list", JSON.stringify(retrievedList));
+  window.location.reload();
+}
+
+document.querySelectorAll(".addQty").forEach((addQtyButton) => {
+  const index = addQtyButton.dataset.index;
+  addQtyButton.addEventListener("click", () => {
+    addQty(index);
+  });
+});
 
 //------------------------------Résumé commande et Formulaire de commande--------------------------
 
