@@ -34,6 +34,7 @@ if (retrievedList === null) {
             <h3 class="name">${retrievedList[i].name}</h3>
             <p class="color">${retrievedList[i].colors}</p>
             <button data-index="${i}">Moins</button>
+            <button class="increase">+</button>
             <p class="quantity">${retrievedList[i].quantity}</p>
             <button class="addQty" data-index="${i}">Plus</button>
             
@@ -123,12 +124,13 @@ function deleteArticle(articleId, colors) {
   window.location.reload();
 }
 
-function addQty(index, ) {
+function addQty(index) {
   const articleActu = retrievedList[index];
   retrievedList.splice(index, 1, {
     ...articleActu,
     quantity: parseInt(articleActu.quantity)++,
-  });
+    
+  });  
   localStorage.setItem("list", JSON.stringify(retrievedList));
   window.location.reload();
 }
@@ -137,8 +139,10 @@ document.querySelectorAll(".addQty").forEach((addQtyButton) => {
   const index = addQtyButton.dataset.index;
   addQtyButton.addEventListener("click", () => {
     addQty(index);
-  });
+  });  
 });
+
+
 
 //------------------------------Résumé commande et Formulaire de commande--------------------------
 
