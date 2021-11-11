@@ -33,10 +33,9 @@ if (retrievedList === null) {
           <div class="container_summary">
             <h3 class="name">${retrievedList[i].name}</h3>
             <p class="color">${retrievedList[i].colors}</p>
-            <button data-index="${i}">Moins</button>
-            <button class="increase">+</button>
+            <button  class="delQty" data-index="${i}">-</button>            
             <p class="quantity">${retrievedList[i].quantity}</p>
-            <button class="addQty" data-index="${i}">Plus</button>
+            <button class="addQty" data-index="${i}">+</button>
             
           </div>
         </div>
@@ -124,13 +123,19 @@ function deleteArticle(articleId, colors) {
   window.location.reload();
 }
 
-function addQty(index) {
+function addQty(index, choiceQty) {
   const articleActu = retrievedList[index];
+  let quantity;
+  if(choiceQty == true) {
+    quantity = parseInt(articleActu.quantity) + 1;
+  }
+  else {
+    quantity = parseInt(articleActu.quantity) - 1;
+  }
   retrievedList.splice(index, 1, {
     ...articleActu,
-    quantity: parseInt(articleActu.quantity)++,
-    
-  });  
+    quantity,
+  });
   localStorage.setItem("list", JSON.stringify(retrievedList));
   window.location.reload();
 }
@@ -138,11 +143,16 @@ function addQty(index) {
 document.querySelectorAll(".addQty").forEach((addQtyButton) => {
   const index = addQtyButton.dataset.index;
   addQtyButton.addEventListener("click", () => {
-    addQty(index);
-  });  
+    addQty(index, true);
+  });
 });
 
-
+document.querySelectorAll(".delQty").forEach((delQtyButton) => {
+  const index = delQtyButton.dataset.index;
+  delQtyButton.addEventListener("click", () => {
+    addQty(index, false);
+  });
+});
 
 //------------------------------Résumé commande et Formulaire de commande--------------------------
 
@@ -344,3 +354,10 @@ function cityValidation(e) {
 }
 
 /*let emailRegExp = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');*/
+
+/* const finalObject = {
+  contact: {
+    firstName,
+  },
+  products: ["90877", "u65445", "576"]
+} */
