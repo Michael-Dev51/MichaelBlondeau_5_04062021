@@ -74,6 +74,8 @@ for (let j = 0; j < retrievedList.length; j++) {
 const prixTotal = calculTotal.reduce((accumulator, currentValue) => {
   return accumulator + currentValue;
 }, 0);
+localStorage.setItem('prixTotal', JSON.stringify(prixTotal));
+console.log(prixTotal);
 //Additionner les articles
 const nombreArticle = articleTotal.reduce((accumulator, currentValue) => {
   return accumulator + currentValue;
