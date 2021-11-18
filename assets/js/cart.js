@@ -74,8 +74,8 @@ for (let j = 0; j < retrievedList.length; j++) {
 const prixTotal = calculTotal.reduce((accumulator, currentValue) => {
   return accumulator + currentValue;
 }, 0);
-localStorage.setItem('prixTotal', JSON.stringify(prixTotal));
-console.log(prixTotal);
+localStorage.setItem("prixTotal", JSON.stringify(prixTotal));
+
 //Additionner les articles
 const nombreArticle = articleTotal.reduce((accumulator, currentValue) => {
   return accumulator + currentValue;
@@ -128,10 +128,9 @@ function deleteArticle(articleId, colors) {
 function addQty(index, choiceQty) {
   const articleActu = retrievedList[index];
   let quantity;
-  if(choiceQty == true) {
+  if (choiceQty == true) {
     quantity = parseInt(articleActu.quantity) + 1;
-  }
-  else {
+  } else {
     quantity = parseInt(articleActu.quantity) - 1;
   }
   retrievedList.splice(index, 1, {
@@ -157,94 +156,12 @@ document.querySelectorAll(".delQty").forEach((delQtyButton) => {
 });
 
 //------------------------------Résumé commande et Formulaire de commande--------------------------
+document.getElementById("nombreArticle").innerHTML += ` ${nombreArticle}`;
+document.getElementById(
+  "totalPriceExcludingTax"
+).innerHTML += ` ${totalPriceExcludingTax} €`;
+document.getElementById("prixTotal").innerHTML += ` ${prixTotal} €`;
 
-const cartSummary = document.getElementById("recap");
-cartSummary.innerHTML += `
-  <article id="basket-summary">
-    <h2>Résumé de votre panier</h2>
-    <div class="summary">
-      <p>Article : ${nombreArticle}</p>
-      <p>Total HT : ${totalPriceExcludingTax + " € "}</p>
-      <p>Total TTC : ${prixTotal + " € "}</p>
-      <p>Livraison : Offerte</p>
-    </div>
-  </article>  
-  <article id="order-form">
-  <h2>Passer votre commande</h2>
-  <div class="information">
-  <form action="" method="post" name="formContact" id="customer">
-  <div class="form-group">
-    <label for="last_name"> Nom de famille </label>
-    <input
-      type="text"
-      id="last_name"
-      name="last_name"
-      class="form-control" 
-      required     
-      placeholder="Votre nom de famille"
-    />
-    <span class="error" id="errorName"></span><br>
-  </div>
-  
-  <div class="form-group">
-    <label for="first_name"> Prénom </label>
-    <input
-      type="text"
-      id="first_name"
-      name="first_name"
-      class="form-control"
-      required
-      placeholder="Votre prénom"
-    />
-    <span class="error" id="errorFirstName"></span>
-  </div>
-  
-  <div class="form-group">
-    <label for="Email"> Adresse email </label>
-    <input
-      type="email"
-      id="Email"
-      name="Email"
-      class="form-control"
-      required
-      placeholder="Entrez une adresse mail valide"
-    />
-    <span class="error" id="errorEmail"></span>    
-  </div>
-  <span class="error id="errorEmail"></span>
-  <div class="form-group">
-    <label for="address"> Adresse postale </label>
-    <input
-      type="text"
-      id="address"
-      name="address"
-      class="form-control"
-      required
-      placeholder="Ex: 4 rue des crayères "
-    />
-    <span class="error" id="errorAddress"></span>    
-  </div>  
-  <div class="form-group">
-    <label for="city"> Ville </label>
-    <input
-      type="text"
-      id="city"
-      name="city"
-      class="form-control"
-      required
-      placeholder="Ex: Reims"
-    />
-    <span class="error" id="errorCity"></span>
-  </div>
-  <span class="error id="errorForeName"></span>
-  <button id="order" class="btn" type="submit" name="order">
-    Commander
-  </button>
-  </form>
-  </div>
-  </article>
-
-`;
 //************************Formulaire de contact********************************/
 //déclaration des variables pour la validation du formulaire
 const validate = document.getElementById("order");
@@ -268,7 +185,47 @@ const addressFormat = /^[0-9]+([\s][a-zA-ZéèîïÈÉÎÏ][a-zéèêàçîï]+)
 const cityFormat =
   /^[a-zA-ZéèîïÉÈÎÏ][a-zA-ZéèîïÉÈÎÏ]+([-'\s][a-zA-ZéèîïÈÉÎÏ]+)?/;
 //Déclenchement de la fonction validation au click sur le bouton commander
-validate.addEventListener("click", validation);
+validate.addEventListener("click", async (event) => {
+  event.preventDefault();
+  validation();
+  await envoiServeur();
+});
+
+async function envoiServeur() {
+  // Recuperer et structurer les infos comme ci-dessus
+  
+  /* const products = []; // ["sff", "sdfsf", "2424"]
+  for (let f=0; f<retrievedList.length; f++){
+    // Recuperer le id de l'objet et le mettre dans le tableau products
+    products.push(retrievedList[f].id);
+  } */
+  const products = retrievedList.map((order) => order.id);
+  const finalObject = {
+    contact: {
+      firstName: firstName.value,
+      lastName: lastName.value,
+      email: email.value,
+      address: address.value,
+      city: city.value,
+    },
+    products,
+  };
+  const url = `http://localhost:3000/api/teddies/order`;
+
+  // Faire un fetch ayant pour methode POST vers l'api
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(finalObject),
+  });
+
+  // Recupere la reponse du fetch
+  const data = await response.json()
+  console.log("data", data);
+  // On envoi cette reponse la a la page de confirmation
+}
 
 function validation(e) {
   lastNamevalidation(e);
@@ -356,10 +313,3 @@ function cityValidation(e) {
 }
 
 /*let emailRegExp = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');*/
-
-/* const finalObject = {
-  contact: {
-    firstName,
-  },
-  products: ["90877", "u65445", "576"]
-} */

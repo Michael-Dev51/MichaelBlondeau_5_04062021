@@ -76,11 +76,92 @@
     <main>
       <h1>Mon panier</h1>
       <div class="container">
-        <section id="product">
-          
-        </section>
+        <section id="product"></section>
         <section id="recap">
-          
+          <article id="basket-summary">
+            <h2>Résumé de votre panier</h2>
+            <div class="summary">
+              <p id="nombreArticle">Article :</p>
+              <p id="totalPriceExcludingTax">Total HT :</p>
+              <p id="prixTotal">Total TTC :</p>
+              <p>Livraison : Offerte</p>
+            </div>
+          </article>
+
+          <article id="order-form">
+            <h2>Passer votre commande</h2>
+            <div class="information">
+              <form action="#" method="POST" name="formContact" id="customer">
+                <div class="form-group">
+                  <label for="last_name"> Nom de famille </label>
+                  <input
+                    type="text"
+                    id="last_name"
+                    name="last_name"
+                    class="form-control"
+                    required
+                    placeholder="Votre nom de famille"
+                  />
+                  <span class="error" id="errorName"></span><br />
+                </div>
+
+                <div class="form-group">
+                  <label for="first_name"> Prénom </label>
+                  <input
+                    type="text"
+                    id="first_name"
+                    name="first_name"
+                    class="form-control"
+                    required
+                    placeholder="Votre prénom"
+                  />
+                  <span class="error" id="errorFirstName"></span>
+                </div>
+
+                <div class="form-group">
+                  <label for="Email"> Adresse email </label>
+                  <input
+                    type="email"
+                    id="Email"
+                    name="Email"
+                    class="form-control"
+                    required
+                    placeholder="Entrez une adresse mail valide"
+                  />
+                  <span class="error" id="errorEmail"></span>
+                </div>
+                <span class="error" id="errorEmail"></span>
+                <div class="form-group">
+                  <label for="address"> Adresse postale </label>
+                  <input
+                    type="text"
+                    id="address"
+                    name="address"
+                    class="form-control"
+                    required
+                    placeholder="Ex: 4 rue des crayères "
+                  />
+                  <span class="error" id="errorAddress"></span>
+                </div>
+                <div class="form-group">
+                  <label for="city"> Ville </label>
+                  <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    class="form-control"
+                    required
+                    placeholder="Ex: Reims"
+                  />
+                  <span class="error" id="errorCity"></span>
+                </div>
+                <span class="error" id="errorForeName"></span>
+                <button id="order" class="btn" type="submit" name="order">
+                  Commander
+                </button>
+              </form>
+            </div>
+          </article>
         </section>
       </div>
     </main>
