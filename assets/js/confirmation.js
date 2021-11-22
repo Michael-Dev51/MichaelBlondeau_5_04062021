@@ -1,3 +1,4 @@
+/*
 //RECUPERATION DES DONNEES DE L URL
 let paramsUrl = new URL(window.location).searchParams;
 
@@ -26,3 +27,4 @@ function display (){
 };
 
 display();
+*/

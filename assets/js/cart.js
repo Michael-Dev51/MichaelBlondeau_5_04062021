@@ -225,7 +225,18 @@ async function envoiServeur() {
   const data = await response.json()
   console.log("data", data);
   // On envoi cette reponse la a la page de confirmation
+  fetch(url)
+  .then((response) => response.json())
+  .then((json) => {
+    console.log(json)
+    localStorage.removeItem('list')
+    window.location.href = `${window.location.origin}/pages/confirmation.html?orderId=${json.orderId}`
+  })
+  .catch(() => {
+    alert(error)
+  })
 }
+
 
 function validation(e) {
   lastNamevalidation(e);

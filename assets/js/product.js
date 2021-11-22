@@ -9,7 +9,7 @@ fetch(newUrl)
   .then(res => res.json())
   .then(response => dataSheet(response))
   .catch(error => alert("Erreur : " + error));
-console.log(newUrl);
+
 
 function dataSheet(product) {
   // Recupération de l'élément id dans le html
