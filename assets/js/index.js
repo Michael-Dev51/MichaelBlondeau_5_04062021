@@ -1,4 +1,6 @@
 import {convertPrice} from "./utils.js";
+// Récupération des données du localStorage
+let retrievedList = JSON.parse(localStorage.getItem("list"));
 
 //fetch de l'URL
 fetch("http://localhost:3000/api/teddies")
@@ -28,5 +30,16 @@ function displayProduct (product) {
     </a>
       `       
     }
+}
+let totalNumberItems =[];
+let i = "";
+if (retrievedList === null) {
+  
+  totalNumberItems = 0;
+}else {
+  for (i = 0; i < retrievedList.length; i++){
+   totalNumberItems =retrievedList[i].quantity;
+    document.getElementById("item_numbers").innerHTML += `${totalNumberItems}`;
+  };
 }
 

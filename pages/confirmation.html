@@ -66,12 +66,13 @@
       <h1>Commande éffectuée avec succès</h1>
       <section id="confirmation">
           <h2>Merci pour votre commande</h2>
-          <p>Un E-mail vous saura envoyer dès que votre commande sera expédiée.</p>
-          <p>Total TTC de votre commande: 20€</p>
-          <p>Référence de la commande : #308LaBear</p>
+          <p>Un E-mail vous saura envoyer dès que votre commande sera expédiée </p>
+          <p id="price_TTC">Total TTC de votre commande: </p>
+          <p id="order_reference">Référence de la commande : </p>
       </section>      
-      <a href="../index.html"  aria-label="Retour à la page Accueil" tabindex="0" class="btnConf">Retour à l'accueil</a>
-      
+      <button id="return" class="btn" type="submit" name="return">
+        Retour à l'accueil
+      </button>
     </main>
     <footer>
       <div class="d-flex f-column">
@@ -80,5 +81,6 @@
       </div>
     </footer>
     <script src="../assets/js/confirmation.js" type="module"></script>
+    
   </body>
 </html>
