@@ -185,15 +185,24 @@ const addressFormat = /^[0-9]+([\s][a-zA-ZéèîïÈÉÎÏ][a-zéèêàçîï]+)
 const cityFormat =
   /^[a-zA-ZéèîïÉÈÎÏ][a-zA-ZéèîïÉÈÎÏ]+([-'\s][a-zA-ZéèîïÈÉÎÏ]+)?/;
 //Déclenchement de la fonction validation au click sur le bouton commander
-validate.addEventListener("click", async (event) => {
-  event.preventDefault();
-  validation();
-  await envoiServeur();
+validate.addEventListener("click", async (e) => {
+  e.preventDefault();
+  const isValid = validation(e);
+  console.log(
+    "🚀 ~ file: cart.js ~ line 191 ~ validate.addEventListener ~ isValid",
+    isValid
+  );
+  if (isValid) {
+    await envoiServeur(e);
+  } else {
+   /* window.alert("Veuillez remplir le formulaire");*/
+  }
+  /* await envoiServeur(e);*/
 });
 
 async function envoiServeur() {
   // Recuperer et structurer les infos comme ci-dessus
-  
+
   /* const products = []; // ["sff", "sdfsf", "2424"]
   for (let f=0; f<retrievedList.length; f++){
     // Recuperer le id de l'objet et le mettre dans le tableau products
@@ -210,6 +219,9 @@ async function envoiServeur() {
     },
     products,
   };
+  console.log("contact : " + finalObject.contact);
+  console.log("Final : ");
+  console.log(finalObject);
   const url = `http://localhost:3000/api/teddies/order`;
 
   // Faire un fetch ayant pour methode POST vers l'api
@@ -220,30 +232,28 @@ async function envoiServeur() {
     },
     body: JSON.stringify(finalObject),
   });
-
+  console.log("resultat ", finalObject);
   // Recupere la reponse du fetch
-  const data = await response.json()
-  console.log("data", data);
+  const data = await response.json();
+  console.log("data : " + data);
   // On envoi cette reponse la a la page de confirmation
-  fetch(url)
-  .then((response) => response.json())
-  .then((json) => {
-    console.log(json)
-    localStorage.removeItem('list')
-    window.location.href = `${window.location.origin}/pages/confirmation.html?orderId=${json.orderId}`
-  })
-  .catch(() => {
-    alert(error)
-  })
+  /*  fetch(url)
+    .then((response) => response.json())
+    .then((response) => alert(JSON.stringify(data)))
+    .catch((error) => alert("Erreur : " + error)); */
+
+  localStorage.removeItem("list");
+  window.location.href = `${window.location.origin}/pages/confirmation.html?orderId=${data.orderId}&firstName=${data.contact.firstName}&email=${data.contact.email}`;
 }
 
-
 function validation(e) {
-  lastNamevalidation(e);
-  firstNameValidation(e);
-  emailValidation(e);
-  addressValidation(e);
-  cityValidation(e);
+  return (
+    lastNamevalidation(e) &&
+    firstNameValidation(e) &&
+    emailValidation(e) &&
+    addressValidation(e) &&
+    cityValidation(e)
+  );
 }
 
 function lastNamevalidation(e) {
@@ -251,16 +261,17 @@ function lastNamevalidation(e) {
     e.preventDefault();
     formatError.textContent = "Remplir";
     formatError.style.color = "red";
+    return false;
   } else if (onlyCaractere.test(lastName.value) == false) {
     e.preventDefault();
     formatError.textContent = "Format incorrect";
     formatError.style.color = "orange";
+    return false;
   } else {
     formatError.textContent = "Correct";
     formatError.style.color = "green";
+    return true;
   }
-  firstNameValidation(e);
-  emailValidation(e);
 }
 
 function firstNameValidation(e) {
@@ -275,6 +286,7 @@ function firstNameValidation(e) {
   } else {
     fNameError.textContent = "Correct";
     fNameError.style.color = "green";
+    return true;
   }
 }
 
@@ -290,6 +302,7 @@ function emailValidation(e) {
   } else {
     emailError.textContent = "Correct";
     emailError.style.color = "green";
+    return true;
   }
 }
 
@@ -305,6 +318,7 @@ function addressValidation(e) {
   } else {
     addressError.textContent = "Correct";
     addressError.style.color = "green";
+    return true;
   }
 }
 
@@ -320,6 +334,7 @@ function cityValidation(e) {
   } else {
     cityError.textContent = "Correct";
     cityError.style.color = "green";
+    return true;
   }
 }
 
