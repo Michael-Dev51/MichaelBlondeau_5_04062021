@@ -31,15 +31,5 @@ function displayProduct (product) {
       `       
     }
 }
-let totalNumberItems =[];
-let i = "";
-if (retrievedList === null) {
-  
-  totalNumberItems = 0;
-}else {
-  for (i = 0; i < retrievedList.length; i++){
-   totalNumberItems =retrievedList[i].quantity;
-    document.getElementById("item_numbers").innerHTML += `${totalNumberItems}`;
-  };
-}
+
 

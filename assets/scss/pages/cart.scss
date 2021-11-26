@@ -94,8 +94,12 @@ h3{
       justify-content: space-between;
       margin-bottom: 10px;
     }
-  }  
+  } 
+  .form-group, label, input, span {
+    flex-basis: 33%;
+  } 
 }
+
 
 @media (min-width: 590px) {
   .container {
@@ -106,6 +110,9 @@ h3{
         }
       }
     }
+  }
+  .form-group, label, input, span {
+    flex-basis: 33%;
   }
 }
 @media (min-width: 980px) {

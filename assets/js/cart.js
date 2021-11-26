@@ -64,10 +64,11 @@ for (let j = 0; j < retrievedList.length; j++) {
   let totalPriceItems = itemPrice * numberArticle;
   //Calcul du nombre d'article
   let totalNumberItems = numberArticle;
-  document.getElementById("item_numbers").innerHTML += `${totalNumberItems}`;
+  
   //Envoyer les variables à leurs tableaux respectif
   calculTotal.push(totalPriceItems);
   articleTotal.push(totalNumberItems);
+ 
   console.log(totalPriceItems);
 }
 
@@ -81,6 +82,7 @@ localStorage.setItem("prixTotal", JSON.stringify(prixTotal));
 const nombreArticle = articleTotal.reduce((accumulator, currentValue) => {
   return accumulator + currentValue;
 }, 0);
+
 //Calcule tva
 let horsTaxe = (prixTotal / 120) * 20;
 horsTaxe = horsTaxe.toFixed(2);
@@ -243,7 +245,7 @@ async function envoiServeur() {
     .then((response) => alert(JSON.stringify(data)))
     .catch((error) => alert("Erreur : " + error)); */
 
-  localStorage.removeItem("list");
+  localStorage.clear();
   window.location.href = `${window.location.origin}/pages/confirmation.html?orderId=${data.orderId}&firstName=${data.contact.firstName}&email=${data.contact.email}`;
 }
 
