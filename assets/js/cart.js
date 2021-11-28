@@ -59,16 +59,16 @@ console.log(retrievedList);
 for (let j = 0; j < retrievedList.length; j++) {
   let itemPrice = parseInt(retrievedList[j].price, 10);
   let numberArticle = parseInt(retrievedList[j].quantity, 10);
-  
+
   //Calcul du prix
   let totalPriceItems = itemPrice * numberArticle;
   //Calcul du nombre d'article
   let totalNumberItems = numberArticle;
-  
+
   //Envoyer les variables à leurs tableaux respectif
   calculTotal.push(totalPriceItems);
   articleTotal.push(totalNumberItems);
- 
+
   console.log(totalPriceItems);
 }
 
@@ -198,7 +198,7 @@ validate.addEventListener("click", async (e) => {
   if (isValid) {
     await envoiServeur(e);
   } else {
-   /* window.alert("Veuillez remplir le formulaire");*/
+    /* window.alert("Veuillez remplir le formulaire");*/
   }
   /* await envoiServeur(e);*/
 });

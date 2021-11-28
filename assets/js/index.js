@@ -16,6 +16,7 @@ function displayProduct (product) {
     for (const produit of product) {      
       //Convertir le prix
       const price = convertPrice(produit.price);
+      //Affichage des produits
       card.innerHTML += `
       <a href="./pages/product.html?_id=${produit._id}">
       <article>
@@ -29,7 +30,7 @@ function displayProduct (product) {
       </article>
     </a>
       `       
-    }
+    }console.log(card);
 }
 
 
