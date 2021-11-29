@@ -8,4 +8,3 @@ export function convertPrice(productPrice) {
   }).format(price / 100);
   return price;
 }
-// basketPreview

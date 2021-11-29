@@ -30,3 +30,8 @@ h2{
         margin-bottom: 10px;
     }
 }
+footer {
+    #mailContact{
+      @include mail;
+    }
+  }

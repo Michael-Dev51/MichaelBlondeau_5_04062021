@@ -22,7 +22,7 @@ if (retrievedList === null) {
     <figure id="cart_${retrievedList[i].id}">
     <a href=# class="delete" data-id="${retrievedList[i].id}" data-colors="${
       retrievedList[i].colors
-    }">Supprimer</a>
+    }"><i class="fas fa-trash-alt"></i></a>
       <figcaption>
         <div class="container_teddies">
           <div>
@@ -33,9 +33,9 @@ if (retrievedList === null) {
           <div class="container_summary">
             <h3 class="name">${retrievedList[i].name}</h3>
             <p class="color">${retrievedList[i].colors}</p>
-            <button  class="delQty" data-index="${i}">-</button>            
+            <button  class="delQty" data-index="${i}"><i class="far fa-minus-square"></i></button>            
             <p class="quantity">${retrievedList[i].quantity}</p>
-            <button class="addQty" data-index="${i}">+</button>
+            <button class="addQty" data-index="${i}"><i class="far fa-plus-square"></i></button>
             
           </div>
         </div>
@@ -128,7 +128,7 @@ function deleteArticle(articleId, colors) {
   window.location.reload();
 }
 
-function addQty(index, choiceQty) {
+function addDelQty(index, choiceQty) {
   const articleActu = retrievedList[index];
   let quantity;
   if (choiceQty == true) {
@@ -147,14 +147,14 @@ function addQty(index, choiceQty) {
 document.querySelectorAll(".addQty").forEach((addQtyButton) => {
   const index = addQtyButton.dataset.index;
   addQtyButton.addEventListener("click", () => {
-    addQty(index, true);
+    addDelQty(index, true);
   });
 });
 
 document.querySelectorAll(".delQty").forEach((delQtyButton) => {
   const index = delQtyButton.dataset.index;
   delQtyButton.addEventListener("click", () => {
-    addQty(index, false);
+    addDelQty(index, false);
   });
 });
 
@@ -181,7 +181,7 @@ let addressError = document.getElementById("errorAddress");
 let cityError = document.getElementById("errorCity");
 //Expression régulière
 const onlyCaractere =
-  /^[a-zA-ZéèîïÉÈÎÏ][a-zéèêîïàç]+([-'\s][a-zA-ZéèîïÈÉÎÏ][a-zéèêàçîï]+)?/;
+  /^[a-zA-ZéèîïÉÈÎÏ][a-zA-ZéèîïÉÈÎÏ]+([-'\s][a-zA-ZéèîïÈÉÎÏ][a-zA-ZéèîïÉÈÎÏ]+)?/;
 const emailFormat =
   /^[a-zA-Z0-9_-][.a-z0-9]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
 const addressFormat = /^[0-9]+([\s][a-zA-ZéèîïÈÉÎÏ][a-zéèêàçîï]+)?/;
@@ -198,20 +198,14 @@ validate.addEventListener("click", async (e) => {
   if (isValid) {
     await envoiServeur(e);
   } else {
-    /* window.alert("Veuillez remplir le formulaire");*/
-  }
-  /* await envoiServeur(e);*/
+     window.alert("Excusé nous le serveur à rencontrer un problème lors de l'envoi.Réessayer plus tard.");
+  }  
 });
 
 async function envoiServeur() {
-  // Recuperer et structurer les infos comme ci-dessus
-
-  /* const products = []; // ["sff", "sdfsf", "2424"]
-  for (let f=0; f<retrievedList.length; f++){
-    // Recuperer le id de l'objet et le mettre dans le tableau products
-    products.push(retrievedList[f].id);
-  } */
+  // Recuperer et structurer les infos comme ci-dessus  
   const products = retrievedList.map((order) => order.id);
+const finalPrice = prixTotal; 
   const finalObject = {
     contact: {
       firstName: firstName.value,
@@ -220,11 +214,8 @@ async function envoiServeur() {
       address: address.value,
       city: city.value,
     },
-    products,
-  };
-  console.log("contact : " + finalObject.contact);
-  console.log("Final : ");
-  console.log(finalObject);
+    products,    
+  };  
   const url = `http://localhost:3000/api/teddies/order`;
 
   // Faire un fetch ayant pour methode POST vers l'api
@@ -236,17 +227,14 @@ async function envoiServeur() {
     body: JSON.stringify(finalObject),
   });
   console.log("resultat ", finalObject);
+
   // Recupere la reponse du fetch
   const data = await response.json();
   console.log("data : " + data);
-  // On envoi cette reponse la a la page de confirmation
-  /*  fetch(url)
-    .then((response) => response.json())
-    .then((response) => alert(JSON.stringify(data)))
-    .catch((error) => alert("Erreur : " + error)); */
 
+  // On envoi cette reponse la a la page de confirmation  
   localStorage.clear();
-  window.location.href = `${window.location.origin}/pages/confirmation.html?orderId=${data.orderId}&firstName=${data.contact.firstName}&email=${data.contact.email}`;
+  window.location.href = `${window.location.origin}/pages/confirmation.html?orderId=${data.orderId}&orderPrice=${finalPrice}&firstName=${data.contact.firstName}&email=${data.contact.email}`;
 }
 
 function validation(e) {
@@ -340,5 +328,3 @@ function cityValidation(e) {
     return true;
   }
 }
-
-/*let emailRegExp = new RegExp('^[a-zA-Z0-9.-_]+[@]{1}[a-zA-Z0-9.-_]+[.]{1}[a-z]{2,10}$', 'g');*/

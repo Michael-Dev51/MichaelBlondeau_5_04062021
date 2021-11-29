@@ -71,7 +71,11 @@ button {
     cursor: pointer;
   }
 }
-
+footer {
+  #mailContact{
+    @include mail;
+  }
+}
 @media (min-width: 758px) and (max-width: 999px) {
   #product {
     article {

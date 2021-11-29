@@ -14,6 +14,11 @@ h3{
 .empty_basket {
   text-align: center;
 }
+footer {
+  #mailContact{
+    @include mail;
+  }
+}
 #product {    
   figure {
     @include pink-frame;
@@ -22,10 +27,19 @@ h3{
     position: relative;
     flex-direction: column;
     i {
-      color: $darkPink;
-      position: absolute;
-      right: 9px;
-      top: 5px;
+      color: $grey;
+      &.fa-trash-alt {
+        position: absolute;
+        right: 9px;
+        top: 5px; 
+      }
+      &.fa-plus-square,&.fa-minus-square {        
+        font-size: 170%;        
+      }
+         
+    }
+    i.fa-trash-alt:hover,.fa-plus-square:hover,.fa-minus-square:hover{
+      color: $purple;
     }
    
     figcaption {
@@ -42,6 +56,11 @@ h3{
           flex-basis: 80%;
           p{
             margin-bottom: 5px;
+          }
+          .addQty,.delQty{
+            border: none;
+            background: none;
+            width: 100%;
           }
         }
         
@@ -73,6 +92,9 @@ h3{
       
     }
   }
+}
+i.fa-plus-square {
+  position: inherit;
 }
 #product,#basket-summary,
 #order-form {
@@ -129,8 +151,7 @@ h3{
       }
       &#recap{
         flex-basis: 45%;
-      }
-      
+      }      
     }
   }
    form label, span{

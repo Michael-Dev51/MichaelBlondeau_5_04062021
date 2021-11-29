@@ -117,6 +117,6 @@ Consultez le panier OK ou revenir à l'accueil ANNULER `)
     } else {
       retrievedList = [];
       addSelectedProduct();
-    }  
+    }     
   });
 }

@@ -30,7 +30,9 @@ function displayProduct (product) {
       </article>
     </a>
       `       
-    }console.log(card);
+    }
+    //Plan test unitaire pour index
+    console.log(card);
 }
 
 

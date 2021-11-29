@@ -2,7 +2,7 @@
 let paramsUrl = new URL(window.location).searchParams;
 
 let orderId = paramsUrl.get("orderId");
-
+let orderPrice = paramsUrl.get("orderPrice");
 //RECUPERATION DES DONNEES CONTACT
 let contact = JSON.parse(localStorage.getItem("contact"));
 
@@ -11,10 +11,10 @@ let prixTotal = JSON.parse(localStorage.getItem("prixTotal"));
 
 // AFFICHAGE HTML
 
-document.getElementById("price_TTC").innerHTML += ` ${prixTotal}€`;
+document.getElementById("price_TTC").innerHTML += ` ${orderPrice}€`;
 document.getElementById("order_reference").innerHTML += ` ${orderId} `;
 console.log(orderId);
-console.log(prixTotal);
+console.log(orderPrice);
 console.log(contact);
 /*function display (){
     cartConfirmation.innerHTML += `

@@ -51,6 +51,11 @@ section {
     }
   }
 }
+footer {
+  #mailContact{
+    @include mail;
+  }
+}
 @media (min-width: 758px) {
   section {
     flex-direction: row !important;
