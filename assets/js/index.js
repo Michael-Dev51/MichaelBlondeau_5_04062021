@@ -1,4 +1,6 @@
 import {convertPrice} from "./utils.js";
+// Récupération des données du localStorage
+let retrievedList = JSON.parse(localStorage.getItem("list"));
 
 //fetch de l'URL
 fetch("http://localhost:3000/api/teddies")
@@ -14,6 +16,7 @@ function displayProduct (product) {
     for (const produit of product) {      
       //Convertir le prix
       const price = convertPrice(produit.price);
+      //Affichage des produits
       card.innerHTML += `
       <a href="./pages/product.html?_id=${produit._id}">
       <article>
@@ -28,5 +31,8 @@ function displayProduct (product) {
     </a>
       `       
     }
+    //Plan test unitaire pour index
+    console.log(card);
 }
+
 

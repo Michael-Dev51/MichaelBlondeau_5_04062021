@@ -1,256 +1,330 @@
 // Récupération des données du localStorage
 let retrievedList = JSON.parse(localStorage.getItem("list"));
-console.log(retrievedList);
 
-// Création du recapitulatif du panier
+// Affichage des articles du panier ou message panier vide si aucun article
 const cartArticle = document.getElementById("product");
+let structureProduitPanier = [];
+let i = "";
 
-const cartH2 = document.createElement("h2");
-cartArticle.appendChild(cartH2);
-cartH2.textContent = "Vos articles";
-
-const cartFigure = document.createElement("figure");
-cartArticle.appendChild(cartFigure);
-
-const cartFigcaption = document.createElement("figcaption");
-cartFigure.appendChild(cartFigcaption);
-
-if(retrievedList == null || retrievedList.length === 0){
-  // si le panier est vide 
-  const emptyCart = document.createElement('p');
-  cartFigcaption.appendChild(emptyCart);
-  emptyCart.className = "empty_cart";
-  emptyCart.textContent = "Votre panier est tristement vide !"
+if (retrievedList === null) {
+  const panierVide = `
+    <div class="empty_basket">
+      <p>Le panier est vide</p>
+    </div>
+  `;
+  cartArticle.innerHTML = panierVide;
 } else {
-  // si des éléments sont présents dans le panier : récupération des éléments du panier
-  let i = 0;
-  for (retrievedList of retrievedList) {
-      const eachArticle = document.createElement('div');
-      cartFigcaption.appendChild(eachArticle);
-      eachArticle.className = 'container_teddies';
-      
-      const cartImage = document.createElement('div');
-      eachArticle.appendChild(cartImage);
-      cartImage.innerHTML = `
-      <img id="images" src="${retrievedList.image}" alt="${retrievedList.name}" />`;
-      cartImage.className = "Container_image"
+  structureProduitPanier += `<h2>Vos articles</h2>`;
+  for (i = 0; i < retrievedList.length; i++) {
+    structureProduitPanier += `
+    
+    <span class="empty_basket"></span>
+    <figure id="cart_${retrievedList[i].id}">
+    <a href=# class="delete" data-id="${retrievedList[i].id}" data-colors="${
+      retrievedList[i].colors
+    }"><i class="fas fa-trash-alt"></i></a>
+      <figcaption>
+        <div class="container_teddies">
+          <div>
+          <img id="images" src="${retrievedList[i].image}" alt="${
+      retrievedList.name
+    }" /> 
+          </div>
+          <div class="container_summary">
+            <h3 class="name">${retrievedList[i].name}</h3>
+            <p class="color">${retrievedList[i].colors}</p>
+            <button  class="delQty" data-index="${i}"><i class="far fa-minus-square"></i></button>            
+            <p class="quantity">${retrievedList[i].quantity}</p>
+            <button class="addQty" data-index="${i}"><i class="far fa-plus-square"></i></button>
+            
+          </div>
+        </div>
+        <p id="prix" class="price">${
+          parseInt(retrievedList[i].price) * parseInt(retrievedList[i].quantity)
+        }</p>
+      </figcaption>
+    
+    </figure> 
+    `;
+  }
+  if (i === retrievedList.length) {
+    cartArticle.innerHTML = structureProduitPanier;
+  }
+}
+// Déclaration des variables pour le calcul du panier
+let calculTotal = [];
+let articleTotal = [];
+let calculTva = [];
+console.log(retrievedList);
+for (let j = 0; j < retrievedList.length; j++) {
+  let itemPrice = parseInt(retrievedList[j].price, 10);
+  let numberArticle = parseInt(retrievedList[j].quantity, 10);
 
-      const teddiesResume = document.createElement('div');
-      eachArticle.appendChild(teddiesResume);
-      teddiesResume.className = "container_summary";
+  //Calcul du prix
+  let totalPriceItems = itemPrice * numberArticle;
+  //Calcul du nombre d'article
+  let totalNumberItems = numberArticle;
 
-      const teddiesName = document.createElement('div');
-      teddiesResume.appendChild(teddiesName);
-      teddiesName.textContent = retrievedList.name;
-      teddiesName.className = "name";
+  //Envoyer les variables à leurs tableaux respectif
+  calculTotal.push(totalPriceItems);
+  articleTotal.push(totalNumberItems);
 
-      const teddiesColor = document.createElement('div');
-      teddiesResume.appendChild(teddiesColor);
-      teddiesColor.textContent = "Couleur : " + retrievedList.colors;
-      teddiesColor.className = "color";
-
-      const teddiesQuantity = document.createElement('div');
-      teddiesResume.appendChild(teddiesQuantity);
-      teddiesQuantity.textContent = "Quantité : " + retrievedList.quantity;
-      teddiesQuantity.className = "quantity";
-
-      const teddiesPrice = document.createElement('div');
-      teddiesResume.appendChild(teddiesPrice);
-      teddiesPrice.className = 'price';
-      teddiesPrice.id = i++;
-
-      const price = document.createElement('p');
-      teddiesPrice.appendChild(price);
-      price.textContent = retrievedList.price;
-
-  };
-
-
-
-
-
+  console.log(totalPriceItems);
 }
 
-const cartSummary = document.getElementById("recap");
-const totalBasket = document.createElement("article");
-cartSummary.appendChild(totalBasket);
-totalBasket.id = "basket-summary";
+//Additionner les prix
+const prixTotal = calculTotal.reduce((accumulator, currentValue) => {
+  return accumulator + currentValue;
+}, 0);
+localStorage.setItem("prixTotal", JSON.stringify(prixTotal));
 
-const cartTitle2 = document.createElement("h2");
-totalBasket.appendChild(cartTitle2);
-cartTitle2.textContent = "Résumé de votre panier";
+//Additionner les articles
+const nombreArticle = articleTotal.reduce((accumulator, currentValue) => {
+  return accumulator + currentValue;
+}, 0);
 
-const summaryContainer = document.createElement("div");
-totalBasket.appendChild(summaryContainer);
-summaryContainer.className = "summary";
+//Calcule tva
+let horsTaxe = (prixTotal / 120) * 20;
+horsTaxe = horsTaxe.toFixed(2);
+console.log("prix tva :" + horsTaxe);
+const totalPriceExcludingTax = prixTotal - horsTaxe;
+console.log(totalPriceExcludingTax);
 
-const summaryArticle = document.createElement("p");
-summaryContainer.appendChild(summaryArticle);
-summaryArticle.textContent = "Article : " + retrievedList.value;
+//Suppression d'un article
 
-const delivery = document.createElement("p");
-summaryContainer.appendChild(delivery);
-delivery.textContent = "Livraison : ";
+// SUPPRIMER 1 PRODUIT DU PANIER
+document.querySelectorAll(".delete").forEach((deleteButton) => {
+  console.log(deleteButton);
+  const articleId = deleteButton.dataset.id;
+  const colors = deleteButton.dataset.colors;
+  deleteButton.addEventListener("click", () => {
+    console.log(articleId);
+    deleteArticle(articleId, colors);
+  });
+});
 
-const totalExcludingTax = document.createElement("p");
-summaryContainer.appendChild(totalExcludingTax);
-totalExcludingTax.textContent = "Total HT : " ;
+/**
+ * localstorage = [
+ *  {id: sfsf, color: "black", quantity: 5....},
+ *  {id: sfsf, color: "white", quantity: 3....}
+ * ]
+ * */
 
-const tva = document.createElement("p");
-summaryContainer.appendChild(tva);
-tva.textContent = "Tva : " ;
+function deleteArticle(articleId, colors) {
+  // Retirer articleId du retrievedList
+  const index = retrievedList.findIndex(
+    (product) => product.id == articleId && product.colors == colors
+  );
+  retrievedList.splice(index, 1);
 
-// Affichage du formulaire
-const orderForm = document.createElement("article");
-cartSummary.appendChild(orderForm);
-orderForm.id = "order-form";
+  // Mettre a jour le localstorage
+  if (retrievedList.length == 0) {
+    localStorage.setItem("list", null);
+  } else {
+    localStorage.setItem("list", JSON.stringify(retrievedList));
+  }
+  // Retirer l'article de notre page (rafraichir la page completement)
+  // document.getElementById(`cart_${articleId}`).remove();
+  window.location.reload();
+}
 
-const titleForm = document.createElement("h2");
-orderForm.appendChild(titleForm);
-titleForm.textContent = "Passer votre commande";
+function addDelQty(index, choiceQty) {
+  const articleActu = retrievedList[index];
+  let quantity;
+  if (choiceQty == true) {
+    quantity = parseInt(articleActu.quantity) + 1;
+  } else {
+    quantity = parseInt(articleActu.quantity) - 1;
+  }
+  retrievedList.splice(index, 1, {
+    ...articleActu,
+    quantity,
+  });
+  localStorage.setItem("list", JSON.stringify(retrievedList));
+  window.location.reload();
+}
 
-const customerInformation = document.createElement("div");
-orderForm.appendChild(customerInformation);
-customerInformation.className = "information";
-customerInformation.innerHTML = `
-<form method="post" name="formContact" id="customer">
-<div class="form-group">
-  <label for="last_name"> Nom de famille </label>
-  <input
-    type="text"
-    id="last_name"
-    name="last_name"
-    class="form-control"
-    required
-    autofocus
-    placeholder="Votre nom de famille"
-  />
-</div>
-<div class="form-group">
-  <label for="first_name"> Prénom </label>
-  <input
-    type="text"
-    id="first_name"
-    name="first_name"
-    class="form-control"
-    required
-    placeholder="Votre prénom"
-  />
-</div>
-<div class="form-group">
-  <label for="E-mail"> Adresse email </label>
-  <input
-    type="email"
-    id="E-mail"
-    name="E-mail"
-    class="form-control"
-    required
-    placeholder="Entrez une adresse mail valide"
-  />
-</div>
-<div class="form-group">
-  <label for="address"> Adresse postale </label>
-  <input
-    type="text"
-    id="address"
-    name="address"
-    class="form-control"
-    required
-    placeholder="Ex: 4 rue des crayères "
-  />
-</div>
-<div class="form-group">
-  <label for="city"> Ville </label>
-  <input
-    type="text"
-    id="city"
-    name="city"
-    class="form-control"
-    required
-    placeholder="Ex: Reims"
-  />
-</div>
-<button id="order" class="btn" type="submit" name="order">
-  Commander
-</button>
-</form>
-`
+document.querySelectorAll(".addQty").forEach((addQtyButton) => {
+  const index = addQtyButton.dataset.index;
+  addQtyButton.addEventListener("click", () => {
+    addDelQty(index, true);
+  });
+});
 
+document.querySelectorAll(".delQty").forEach((delQtyButton) => {
+  const index = delQtyButton.dataset.index;
+  delQtyButton.addEventListener("click", () => {
+    addDelQty(index, false);
+  });
+});
 
+//------------------------------Résumé commande et Formulaire de commande--------------------------
+document.getElementById("nombreArticle").innerHTML += ` ${nombreArticle}`;
+document.getElementById(
+  "totalPriceExcludingTax"
+).innerHTML += ` ${totalPriceExcludingTax} €`;
+document.getElementById("prixTotal").innerHTML += ` ${prixTotal} €`;
 
-/*<article id="basket-summary">
-          
-          <div class="summary">
-            <p>Articles<span>1</span></p>
-            <p>Livraison<span>Offerte</span></p>
-            <p>Total HT<span>15€</span></p>
-            <p>TVA<span>20%</span></p>
-            <p>Total TTC<span>18€</span></p>
-          </div>
-        </article>
-        <article id="order-form">
-          <h2>Passer votre commande</h2>
-          <div class="information">
-            <form method="post" name="formContact" id="customer">
-              <div class="form-group">
-                <label for="last_name"> Nom de famille </label>
-                <input
-                  type="text"
-                  id="last_name"
-                  name="last_name"
-                  class="form-control"
-                  required
-                  autofocus
-                  placeholder="Votre nom de famille"
-                />
-              </div>
-              <div class="form-group">
-                <label for="first_name"> Prénom </label>
-                <input
-                  type="text"
-                  id="first_name"
-                  name="first_name"
-                  class="form-control"
-                  required
-                  placeholder="Votre prénom"
-                />
-              </div>
-              <div class="form-group">
-                <label for="E-mail"> Adresse email </label>
-                <input
-                  type="email"
-                  id="E-mail"
-                  name="E-mail"
-                  class="form-control"
-                  required
-                  placeholder="Entrez une adresse mail valide"
-                />
-              </div>
-              <div class="form-group">
-                <label for="address"> Adresse postale </label>
-                <input
-                  type="text"
-                  id="address"
-                  name="address"
-                  class="form-control"
-                  required
-                  placeholder="Ex: 4 rue des crayères "
-                />
-              </div>
-              <div class="form-group">
-                <label for="city"> Ville </label>
-                <input
-                  type="text"
-                  id="city"
-                  name="city"
-                  class="form-control"
-                  required
-                  placeholder="Ex: Reims"
-                />
-              </div>
-              <button id="order" class="btn" type="submit" name="order">
-                Commander
-              </button>
-            </form>
-          </div>
-        </article>*/
+//************************Formulaire de contact********************************/
+//déclaration des variables pour la validation du formulaire
+const validate = document.getElementById("order");
+let lastName = document.getElementById("last_name");
+let firstName = document.getElementById("first_name");
+let email = document.getElementById("Email");
+let address = document.getElementById("address");
+let city = document.getElementById("city");
+//Déclaration des variables si il y a une erreur dans les champs input
+let formatError = document.getElementById("errorName");
+let fNameError = document.getElementById("errorFirstName");
+let emailError = document.getElementById("errorEmail");
+let addressError = document.getElementById("errorAddress");
+let cityError = document.getElementById("errorCity");
+//Expression régulière
+const onlyCaractere =
+  /^[a-zA-ZéèîïÉÈÎÏ][a-zA-ZéèîïÉÈÎÏ]+([-'\s][a-zA-ZéèîïÈÉÎÏ][a-zA-ZéèîïÉÈÎÏ]+)?/;
+const emailFormat =
+  /^[a-zA-Z0-9_-][.a-z0-9]+@[a-zA-Z0-9-]{2,}[.][a-zA-Z]{2,3}$/;
+const addressFormat = /^[0-9]+([\s][a-zA-ZéèîïÈÉÎÏ][a-zéèêàçîï]+)?/;
+const cityFormat =
+  /^[a-zA-ZéèîïÉÈÎÏ][a-zA-ZéèîïÉÈÎÏ]+([-'\s][a-zA-ZéèîïÈÉÎÏ]+)?/;
+//Déclenchement de la fonction validation au click sur le bouton commander
+validate.addEventListener("click", async (e) => {
+  e.preventDefault();
+  const isValid = validation(e);
+  console.log(
+    "🚀 ~ file: cart.js ~ line 191 ~ validate.addEventListener ~ isValid",
+    isValid
+  );
+  if (isValid) {
+    await envoiServeur(e);
+  } else {
+     window.alert("Excusé nous le serveur à rencontrer un problème lors de l'envoi.Réessayer plus tard.");
+  }  
+});
+
+async function envoiServeur() {
+  // Recuperer et structurer les infos comme ci-dessus  
+  const products = retrievedList.map((order) => order.id);
+const finalPrice = prixTotal; 
+  const finalObject = {
+    contact: {
+      firstName: firstName.value,
+      lastName: lastName.value,
+      email: email.value,
+      address: address.value,
+      city: city.value,
+    },
+    products,    
+  };  
+  const url = `http://localhost:3000/api/teddies/order`;
+
+  // Faire un fetch ayant pour methode POST vers l'api
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(finalObject),
+  });
+  console.log("resultat ", finalObject);
+
+  // Recupere la reponse du fetch
+  const data = await response.json();
+  console.log("data : " + data);
+
+  // On envoi cette reponse la a la page de confirmation  
+  localStorage.clear();
+  window.location.href = `${window.location.origin}/pages/confirmation.html?orderId=${data.orderId}&orderPrice=${finalPrice}&firstName=${data.contact.firstName}&email=${data.contact.email}`;
+}
+
+function validation(e) {
+  return (
+    lastNamevalidation(e) &&
+    firstNameValidation(e) &&
+    emailValidation(e) &&
+    addressValidation(e) &&
+    cityValidation(e)
+  );
+}
+
+function lastNamevalidation(e) {
+  if (lastName.validity.valueMissing) {
+    e.preventDefault();
+    formatError.textContent = "Remplir";
+    formatError.style.color = "red";
+    return false;
+  } else if (onlyCaractere.test(lastName.value) == false) {
+    e.preventDefault();
+    formatError.textContent = "Format incorrect";
+    formatError.style.color = "orange";
+    return false;
+  } else {
+    formatError.textContent = "Correct";
+    formatError.style.color = "green";
+    return true;
+  }
+}
+
+function firstNameValidation(e) {
+  if (firstName.validity.valueMissing) {
+    e.preventDefault();
+    fNameError.textContent = "Remplir";
+    fNameError.style.color = "red";
+  } else if (onlyCaractere.test(firstName.value) == false) {
+    e.preventDefault();
+    fNameError.textContent = "Format incorrect";
+    fNameError.style.color = "orange";
+  } else {
+    fNameError.textContent = "Correct";
+    fNameError.style.color = "green";
+    return true;
+  }
+}
+
+function emailValidation(e) {
+  if (email.validity.valueMissing) {
+    e.preventDefault();
+    emailError.textContent = "Remplir";
+    emailError.style.color = "red";
+  } else if (emailFormat.test(email.value) == false) {
+    e.preventDefault();
+    emailError.textContent = "Format incorrect";
+    emailError.style.color = "orange";
+  } else {
+    emailError.textContent = "Correct";
+    emailError.style.color = "green";
+    return true;
+  }
+}
+
+function addressValidation(e) {
+  if (address.validity.valueMissing) {
+    e.preventDefault();
+    addressError.textContent = "Remplir";
+    addressError.style.color = "red";
+  } else if (addressFormat.test(address.value) == false) {
+    e.preventDefault();
+    addressError.textContent = "Format incorrect";
+    addressError.style.color = "red";
+  } else {
+    addressError.textContent = "Correct";
+    addressError.style.color = "green";
+    return true;
+  }
+}
+
+function cityValidation(e) {
+  if (city.validity.valueMissing) {
+    e.preventDefault();
+    cityError.textContent = "Remplir";
+    cityError.style.color = "red";
+  } else if (onlyCaractere.test(city.value) == false) {
+    e.preventDefault();
+    cityError.textContent = "Format incorrect";
+    cityError.style.color = "red";
+  } else {
+    cityError.textContent = "Correct";
+    cityError.style.color = "green";
+    return true;
+  }
+}
