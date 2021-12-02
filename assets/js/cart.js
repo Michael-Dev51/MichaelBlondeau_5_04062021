@@ -41,7 +41,7 @@ if (retrievedList === null) {
         </div>
         <p id="prix" class="price">${
           parseInt(retrievedList[i].price) * parseInt(retrievedList[i].quantity)
-        }</p>
+        } €</p>
       </figcaption>
     
     </figure> 
